@@ -1,7 +1,8 @@
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button, InputBase } from "@material-ui/core";
 import React from "react";
 import { useStyles } from "./NavBar.styles";
-import { Link as RouterLink } from "react-router-dom";
+import { NavLink as RouterLink } from "react-router-dom";
+import SearchIcon from '@material-ui/icons/Search';
 
 const headersData = [
   {
@@ -18,41 +19,52 @@ const headersData = [
   },
 ];
 const Header = () => {
-  const { header, logoStyle, menuButton, toolbar } = useStyles();
+  const { header, logoStyle, menuButton, search, searchIcon, inputRoot, inputInput} = useStyles();
 
   const logo = (
     <Typography variant="h6" component="h1" className={logoStyle}>
       Book Store
     </Typography>
   );
+  
   const displayDesktop = () => {
     return (
-      <Toolbar className="toolbar">
+      <Toolbar>
         {logo}
         {menuLinks()}
+        <div className={search}>
+            <div className={searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              className={`${inputRoot} ${inputInput}`}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
       </Toolbar>
     );
   };
   const menuLinks = () => {
-    return (
-      <ul>
-        {headersData.map(({ label, href }) => {
-          return (
-            <Button
-              {...{
-                key: label,
-                color: "inherit",
-                to: href,
-                component: RouterLink,
-                className: menuButton
-              }}
-            >
-              {label}
-            </Button>
-          );
-        })}
-      </ul>
-    );
+    return headersData.map(({ label, href }) => {
+      return (
+        <Button
+          {...{
+            key: label,
+            color: "inherit",
+            to: href,
+            component: RouterLink,
+            className: menuButton,
+          }}
+          activeStyle={{
+            fontWeight: "bold",
+            borderBottom: "solid 3px #20B2AA	",
+          }}
+        >
+          {label}
+        </Button>
+      );
+    });
   };
 
   return (
