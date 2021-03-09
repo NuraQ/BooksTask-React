@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "200px",
   },
   menuButton: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display:'none'
     },
   
@@ -65,11 +65,11 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   menuIcon: {
-    [theme.breakpoints.up('xs')]: {
+    [theme.breakpoints.up('sm')]: {
       display:'none'
     },
-    [theme.breakpoints.down('xs')]: {
-      display:'block'
+    [theme.breakpoints.down('sm')]: {
+      display:'inline-block'
     },
     padding: theme.spacing(0, 2),
     color: 'black'
