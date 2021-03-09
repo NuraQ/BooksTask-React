@@ -11,7 +11,7 @@ import {
   import SearchIcon from "@material-ui/icons/Search";
   import HomeIcon from "@material-ui/icons/Home";
   import { useState } from "react";
-  import IconButton from "@material-ui/core/iconbutton";
+  import {IconButton} from "@material-ui/core";
   import { Menu, MenuItem } from "@material-ui/core";
   
   const headersData = [
