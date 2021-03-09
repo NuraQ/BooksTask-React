@@ -10,7 +10,7 @@ import { useStyles } from "./NavBar.styles";
 import { NavLink as RouterLink } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IconButton from "@material-ui/core/iconbutton";
 import { Menu, MenuItem } from "@material-ui/core";
 
@@ -53,6 +53,11 @@ const Header = () => {
   const setMobileView = (event) => {
     setState(true);
     setAnchor(event.currentTarget);
+  };
+   const handleClose = () => {
+    setAnchor(null);
+    setState(false);
+
   };
   const MenuBar = () => {
     return (
@@ -129,7 +134,8 @@ const Header = () => {
           vertical: "top",
           horizontal: "right",
         }}
-        open={true}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
       >
         {data}
       </Menu>
