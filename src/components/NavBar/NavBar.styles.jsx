@@ -3,6 +3,7 @@ import { makeStyles, fade } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: "white",
+
   },
   logoStyle: {
     fontFamily: "Work Sans, sans-serif",
@@ -13,6 +14,9 @@ export const useStyles = makeStyles((theme) => ({
     width: "200px",
   },
   menuButton: {
+    [theme.breakpoints.down('xs')]: {
+      display:'none'
+    },
     fontFamily: "Open Sans, sans-serif",
     fontWeight: 400,
     size: "18px",
@@ -30,7 +34,6 @@ export const useStyles = makeStyles((theme) => ({
     },
     marginRight: theme.spacing(2),
     marginLeft: 'auto',
-    width: '300px',
     height:'35px',
     alignSelf: 'center',
     // [theme.breakpoints.up('xl')]: {
@@ -61,5 +64,15 @@ export const useStyles = makeStyles((theme) => ({
       width: '30ch',
     },
   },
+  menuIcon: {
+    [theme.breakpoints.up('xs')]: {
+      display:'none'
+    },
+    [theme.breakpoints.down('xs')]: {
+      display:'block'
+    },
+    padding: theme.spacing(0, 2),
+    color: 'black'
 
+  }
 }));
