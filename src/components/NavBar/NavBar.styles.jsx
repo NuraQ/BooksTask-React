@@ -3,7 +3,6 @@ import { makeStyles, fade } from "@material-ui/core";
 export const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: "white",
-
   },
   logoStyle: {
     fontFamily: "Work Sans, sans-serif",
