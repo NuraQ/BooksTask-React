@@ -1,18 +1,11 @@
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  InputBase,
-} from "@material-ui/core";
-import React from "react";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import React, { useState } from "react";
 import { useStyles } from "./NavBar.styles";
 import { NavLink as RouterLink } from "react-router-dom";
-import SearchIcon from "@material-ui/icons/Search";
 import HomeIcon from "@material-ui/icons/Home";
-import { useState } from "react";
 import { IconButton } from "@material-ui/core";
 import { Menu, MenuItem } from "@material-ui/core";
+import { SearchComponent } from "../SearchComponent/SearchComponent";
 
 const headersData = [
   {
@@ -30,17 +23,7 @@ const headersData = [
 ];
 
 const Header = () => {
-  const {
-    header,
-    logoStyle,
-    menuButton,
-    search,
-    searchIcon,
-    inputRoot,
-    inputInput,
-    menuIcon,
-  } = useStyles();
-
+  const { header, logoStyle, menuButton, menuIcon } = useStyles();
   const [state, setState] = useState({
     openMenu: false,
     anchorEl: null,
@@ -54,13 +37,13 @@ const Header = () => {
 
   const setMobileView = (event) => {
     let target = event.currentTarget;
-    setState((prevState) => ({ ...prevState, openMenu: true }));
-    setState((prevState) => ({ ...prevState, anchorEl: target }));
+    setState({ ...state, openMenu: true });
+    setState({ ...state, anchorEl: target });
   };
 
   const handleClose = () => {
-    setState((prevState) => ({ ...prevState, openMenu: false }));
-    setState((prevState) => ({ ...prevState, anchorEl: null }));
+    setState({ ...state, openMenu: false });
+    setState({ ...state, anchorEl: null });
   };
   const MenuBar = () => {
     return (
@@ -71,22 +54,13 @@ const Header = () => {
           </div>
         </IconButton>
         {logo}
-        {openMenu ? <MobileDisplay /> : MenuDesktop()}
-        <div className={search}>
-          <div className={searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            className={`${inputRoot} ${inputInput}`}
-            inputProps={{ "aria-label": "search" }}
-          />
-        </div>
+        {openMenu ? <MobileDisplay /> : <DesktopDisplay />}
+        <SearchComponent />
       </Toolbar>
     );
   };
-  const MenuDesktop = () => {
-    return headersData.map(({ label, href }) => {
+  const DesktopDisplay = () => {
+    const Menu = headersData.map(({ label, href }) => {
       return (
         <Button
           {...{
@@ -105,6 +79,7 @@ const Header = () => {
         </Button>
       );
     });
+    return Menu;
   };
 
   const MobileDisplay = () => {

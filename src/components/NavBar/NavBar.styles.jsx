@@ -61,17 +61,7 @@ export const useStyles = makeStyles((theme) => ({
     color: 'black',
 
   },
-  inputRoot: {
-    color: 'black',
-  },
-  inputInput: {
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '30ch',
-    },
-  },
+
   menuIcon: {
     [theme.breakpoints.up('xs')]: {
       display:'none'
