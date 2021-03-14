@@ -53,7 +53,7 @@ const Header = () => {
 
   const setMobileView = (event) => {
     let target = event.currentTarget;
-    setState((prevState) => ({ ...prevState, openMenu: true }));
+    setState(({ ...state, openMenu: true }));
     setState((prevState) => ({ ...prevState, anchorEl: target }));
   };
 

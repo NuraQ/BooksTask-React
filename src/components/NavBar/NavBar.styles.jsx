@@ -9,19 +9,32 @@ export const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     color: "#808080",
     textAlign: "left",
-    marginLeft: "50px",
+    marginLeft: "4rem",
     width: "200px",
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: "0.5rem",
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: "1rem",
+    },
   },
   menuButton: {
     [theme.breakpoints.down('xs')]: {
       display:'none'
     },
-  
+    [theme.breakpoints.down('md')]: {
+      marginLeft: "2.5em",
+
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: "2.0em",
+      fontSize: "0.7em"
+    },
     fontFamily: "Open Sans, sans-serif",
     fontWeight: 400,
     size: "18px",
     color: "#808080",
-    marginLeft: "45px",
+    marginLeft: "4em",
     alignSelf: "stretch",
   },
   search: {    position: 'relative',
@@ -35,10 +48,7 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
     height:'35px',
     alignSelf: 'center',
-    // [theme.breakpoints.up('xl')]: {
-    //   marginLeft: theme.spacing(3),
-    //   width: 'auto',
-    // },
+
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -48,7 +58,8 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'black'
+    color: 'black',
+
   },
   inputRoot: {
     color: 'black',
@@ -68,7 +79,8 @@ export const useStyles = makeStyles((theme) => ({
       display:'none'
     },
     [theme.breakpoints.down('xs')]: {
-      display:'inline-block'
+      display:'inline-block',
+      padding: '0'
     },
     padding: theme.spacing(0, 2),
     color: 'black'

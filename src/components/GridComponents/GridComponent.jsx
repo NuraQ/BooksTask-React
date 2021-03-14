@@ -9,6 +9,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Typography from "@material-ui/core/Typography";
+import {useRef, useCallback, useState} from 'react'
+import FetchData from '../DataFetcher/DataFetcher'
+
+
 
 const FormRow = (props) => {
   const classes = useStyles();
@@ -31,7 +35,6 @@ const FormRow = (props) => {
                   : ""
               } `}
               className={classes.media}
-              title="Contemplative Reptile"
             ></CardMedia>
             <CardContent className={classes.cardContent}>
               <div className={classes.textWrapper}>
@@ -65,18 +68,42 @@ const FormRow = (props) => {
 
 export const GridComponent = (props) => {
   const classes = useStyles();
+  const [page,setPageNumber] = useState(0);
+  const Books = FetchData(page);
+
+const observer = useRef()
+const lastBookElementRef = useCallback(node => {
+  if (observer.current) observer.current.disconnect()
+  observer.current = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting ) {
+      setPageNumber(page + 40)
+    }
+  })
+  if (node) observer.current.observe(node)
+}, [])
 
   return (
     <div container className={classes.root}>
       <Grid container spacing={3}>
-        {props.items.map((item, index) => {
-          return (
-            <FormRow
-              title={item.volumeInfo.title}
-              element={item}
-              key={`${index}`}
-            />
-          );
+        {Books.map((item, index) => {
+          if (Books.length == index + 1) {
+            return (
+              <div
+                title={item.volumeInfo.title}
+                element={item}
+                key={`${index}`}
+                ref={lastBookElementRef}
+              />
+            );
+          } else {
+            return (
+              <FormRow
+                title={item.volumeInfo.title}
+                element={item}
+                key={`${index}`}
+              />
+            );
+          }
         })}
       </Grid>
     </div>

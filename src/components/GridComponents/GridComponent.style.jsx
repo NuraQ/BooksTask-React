@@ -9,6 +9,10 @@ export const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 140,
+    display: 'block',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'top'
   },
   elementRoot: {
     maxWidth: 345,
