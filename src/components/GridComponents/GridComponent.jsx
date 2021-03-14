@@ -1,7 +1,6 @@
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
-import { useGridStyles } from "./GridComponent.style";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -11,9 +10,16 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Typography from "@material-ui/core/Typography";
 import { useRef, useCallback, useState, forwardRef } from "react";
 import FetchData from "../DataFetcher/DataFetcher";
+import { useGridStyles } from "./GridComponent.style";
 
 const FormRow = forwardRef((props,ref) => {
   const classes = useGridStyles();
+  // const styles = {
+  //   media: {
+  //     height: "0",
+  //     paddingTop: "56%",
+  //   },
+  // };
   return (
     <React.Fragment>
       <Grid ref={ref} item xs={12} sm={4} md={3}>
