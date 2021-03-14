@@ -70,7 +70,7 @@ const Header = () => {
           </div>
         </IconButton>
         {logo}
-        {openMenu ? <MobileDisplay /> : MenuDesktop()}
+        {openMenu ? <MobileDisplay /> : <MenuDesktop />}
         <div className={search}>
           <div className={searchIcon}>
             <SearchIcon />
@@ -85,7 +85,7 @@ const Header = () => {
     );
   };
   const MenuDesktop = () => {
-    return headersData.map(({ label, href }) => {
+    const Menu = headersData.map(({ label, href }) => {
       return (
         <Button
           {...{
@@ -104,6 +104,7 @@ const Header = () => {
         </Button>
       );
     });
+    return Menu
   };
 
   const MobileDisplay = () => {
