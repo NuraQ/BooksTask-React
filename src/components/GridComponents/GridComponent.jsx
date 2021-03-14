@@ -9,12 +9,10 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Typography from "@material-ui/core/Typography";
-import {useRef, useCallback, useState} from 'react'
-import FetchData from '../DataFetcher/DataFetcher'
+import { useRef, useCallback, useState, forwardRef } from "react";
+import FetchData from "../DataFetcher/DataFetcher";
 
-
-
-const FormRow = (props) => {
+const FormRow = forwardRef((props,ref) => {
   const classes = useStyles();
   const styles = {
     media: {
@@ -24,7 +22,7 @@ const FormRow = (props) => {
   };
   return (
     <React.Fragment>
-      <Grid item xs={12} sm={4} md={3}>
+      <Grid ref={ref} item xs={12} sm={4} md={3}>
         <Card className={classes.elementRoot}>
           <CardActionArea>
             <CardMedia
@@ -64,31 +62,31 @@ const FormRow = (props) => {
       </Grid>
     </React.Fragment>
   );
-};
+});
 
 export const GridComponent = (props) => {
   const classes = useStyles();
-  const [page,setPageNumber] = useState(0);
+  const [page, setPageNumber] = useState(0);
   const Books = FetchData(page);
 
-const observer = useRef()
-const lastBookElementRef = useCallback(node => {
-  if (observer.current) observer.current.disconnect()
-  observer.current = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting ) {
-      setPageNumber(page + 40)
-    }
-  })
-  if (node) observer.current.observe(node)
-}, [])
+  const observer = useRef();
+  const lastBookElementRef = useCallback((node) => {
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setPageNumber(prevPage => prevPage + 40);
+      }
+    });
+    if (node) observer.current.observe(node);
+  }, [Books]);
 
   return (
     <div container className={classes.root}>
       <Grid container spacing={3}>
         {Books.map((item, index) => {
-          if (Books.length == index + 1) {
+          if (Books.length === index + 1) {
             return (
-              <div
+              <FormRow
                 title={item.volumeInfo.title}
                 element={item}
                 key={`${index}`}
