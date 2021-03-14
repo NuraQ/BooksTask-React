@@ -1,7 +1,7 @@
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
-import { useStyles } from "./GridComponent.style";
+import { useGridStyles } from "./GridComponent.style";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -13,20 +13,13 @@ import { useRef, useCallback, useState, forwardRef } from "react";
 import FetchData from "../DataFetcher/DataFetcher";
 
 const FormRow = forwardRef((props,ref) => {
-  const classes = useStyles();
-  const styles = {
-    media: {
-      height: "0",
-      paddingTop: "56%",
-    },
-  };
+  const classes = useGridStyles();
   return (
     <React.Fragment>
       <Grid ref={ref} item xs={12} sm={4} md={3}>
         <Card className={classes.elementRoot}>
           <CardActionArea>
             <CardMedia
-              style={styles.media}
               image={`${
                 props.element.volumeInfo.imageLinks
                   ? props.element.volumeInfo.imageLinks.thumbnail
@@ -65,7 +58,7 @@ const FormRow = forwardRef((props,ref) => {
 });
 
 export const GridComponent = (props) => {
-  const classes = useStyles();
+  const classes = useGridStyles();
   const [page, setPageNumber] = useState(0);
   const Books = FetchData(page);
 

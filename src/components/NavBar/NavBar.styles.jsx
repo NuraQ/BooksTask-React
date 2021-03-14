@@ -37,50 +37,14 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: "4em",
     alignSelf: "stretch",
   },
-  search: {    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    border: 'solid 1px 	#DCDCDC ',
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.black, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 'auto',
-    height:'35px',
-    alignSelf: 'center',
+  
 
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'black',
-
-  },
-  inputRoot: {
-    color: 'black',
-  },
-  inputInput: {
-    // padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '30ch',
-    },
-  },
   menuIcon: {
     [theme.breakpoints.up('xs')]: {
       display:'none'
     },
     [theme.breakpoints.down('xs')]: {
       display:'inline-block',
-      padding: '0'
     },
     padding: theme.spacing(0, 2),
     color: 'black'
