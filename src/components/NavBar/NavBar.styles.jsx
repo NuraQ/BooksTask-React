@@ -78,7 +78,6 @@ export const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       display:'inline-block',
-      padding: '0'
     },
     padding: theme.spacing(0, 2),
     color: 'black'
