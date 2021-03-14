@@ -1,9 +1,9 @@
-import NestedGrid from '../../components/BookList/BookList'
+import {BookList} from '../../components/BookList/BookList'
 
 const Home = () =>{
     return (
         <div>
-            <NestedGrid />
+            <BookList />
         </div>
     )
 }

@@ -1,40 +1,18 @@
-import React, { useState, useEffect } from "react";
-import FetchData from '../'
-const ScrollComponent = () => {
-  const [scrollState, setScrollData] = useState({
-    loading: false,
-    books: [],
-    page: 0,
-    prevY: 0,
-  });
+import { useState } from "react";
+import { useRef, useCallback } from "react";
 
-  useEffect(() => {
-    var options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 1.0,
-    };
+export const ScrollComponent = () => {
+  const [page, setPageNumber] = useState(0);
 
-  let observer = new IntersectionObserver(
-      this.handleObserver.bind(this),
-      options
-    );
-    observer.observe(this.loadingRef);
+  const observer = useRef();
+  const lastBookElementRef = useCallback((node) => {
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setPageNumber((prevPage) => prevPage + 40);
+      }
+    });
+    if (node) observer.current.observe(node);
   }, []);
-
-  const getMoreData = () => {
-    setScrollData({ scrollState, loading: true });
-  };
+  return { lastBookElementRef, page };
 };
-
-
-
-function handleObserver(entities, observer) {
-  const y = entities[0].boundingClientRect.y;
-  if (scrollState.prevY > y) {
-    const curPage = scrollState.page + 40;
-    FetchData(curPage);
-    this.setState({ page: curPage });
-  }
-  this.setState({ prevY: y });
-}

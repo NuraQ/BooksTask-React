@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const FetchData = (page) => {
 
   const [items,setItems] = useState([]);
-  const [hasMore, setHasMore] = useState(false)
+  // const [hasMore, setHasMore] = useState(false)
 
   useEffect(() => {
 
@@ -19,7 +19,7 @@ const FetchData = (page) => {
       .then((response) => response.json())
       .then((data) => {
         setItems(state => [...state, ...data.items]);
-        setHasMore(data.totalItems > 0)
+        // setHasMore(data.totalItems > 0)
 
       })
       .catch((error) => {

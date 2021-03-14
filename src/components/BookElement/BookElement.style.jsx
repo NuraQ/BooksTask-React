@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useGridStyles = makeStyles(() => ({
+export const useBookStyle = makeStyles(() => ({
   root: {
     flexGrow: 1,
     marginTop: "170px",
