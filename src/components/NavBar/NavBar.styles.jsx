@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, fade } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
   header: {
@@ -23,21 +23,46 @@ export const useStyles = makeStyles((theme) => ({
       display:'none'
     },
     [theme.breakpoints.down('md')]: {
-      marginLeft: "2.5em",
+      fontSize: "0.9rem",
+      marginLeft: "1.5rem",
 
     },
     [theme.breakpoints.down('sm')]: {
-      marginLeft: "2.0em",
-      fontSize: "0.7em"
+      fontSize: "0.8rem",
+      marginLeft: "0.5rem",
+      
     },
     fontFamily: "Open Sans, sans-serif",
     fontWeight: 400,
     size: "18px",
     color: "#808080",
-    marginLeft: "4em",
+    marginLeft: "3rem",
     alignSelf: "stretch",
   },
-  
+  search: {    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    border: 'solid 1px 	#DCDCDC ',
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.black, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 'auto',
+    height:'35px',
+    alignSelf: 'center',
+
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'black',
+
+  },
 
   menuIcon: {
     [theme.breakpoints.up('xs')]: {

@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 
 const FetchData = (page) => {
 
-  const [items,setItems] = useState([]);
+  const [Books,setItems] = useState([]);
+  const [totalCount,setCount] = useState(0);
+
   // const [hasMore, setHasMore] = useState(false)
 
   useEffect(() => {
@@ -19,14 +21,13 @@ const FetchData = (page) => {
       .then((response) => response.json())
       .then((data) => {
         setItems(state => [...state, ...data.items]);
-        // setHasMore(data.totalItems > 0)
-
+        setCount(data.totalItems)
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }, [page]);
-  return items
+  return {Books, totalCount }
 };
 
 export default FetchData;
