@@ -36,14 +36,14 @@ const Header = () => {
   );
 
   const setMobileView = (event) => {
-    let target = event.currentTarget;
-    setState({ ...state, openMenu: true });
-    setState({ ...state, anchorEl: target });
+    let target = event.currentTarget;    
+    setState((prevState) => ({ ...prevState, openMenu: true }));
+    setState((prevState) => ({ ...prevState, anchorEl: target }));
   };
 
   const handleClose = () => {
-    setState({ ...state, openMenu: false });
-    setState({ ...state, anchorEl: null });
+    setState((prevState) => ({ ...prevState, openMenu: false }));
+    setState((prevState) => ({ ...prevState, anchorEl: null }));
   };
   const MenuBar = () => {
     return (
