@@ -5,7 +5,7 @@ const FetchData = (page) => {
   const [Books,setItems] = useState([]);
   const [totalCount,setCount] = useState(0);
 
-  // const [hasMore, setHasMore] = useState(false)
+  const [hasMore, setHasMore] = useState(false)
 
   useEffect(() => {
 
@@ -22,12 +22,17 @@ const FetchData = (page) => {
       .then((data) => {
         setItems(state => [...state, ...data.items]);
         setCount(data.totalItems)
+        if (data.totalItems - 40 === page){
+          setHasMore(false)
+        }else{
+          setHasMore(true)
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }, [page]);
-  return {Books, totalCount }
+  return {Books, totalCount, hasMore }
 };
 
 export default FetchData;

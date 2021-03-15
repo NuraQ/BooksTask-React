@@ -8,14 +8,11 @@ import {BookElement} from '../BookElement/BookElement'
 
 export const BookList = () => {
   
+  const [page, setPageNumber] = useState(0)
   const classes = useGridStyles();
-  const [page, setPageNumber] = useState(0);
-  const {Books, totalCount} = FetchData(page);
-  console.log("cheking stuff", totalCount, "page  ", page )
-  
-  let pagesToFetch = (totalCount - page >= 40 ) ? 40 : (totalCount - page)
-  console.log(`page  ${page}   total ${pagesToFetch}`)
-  const {lastBookElementRef} = ScrollComponent(setPageNumber, pagesToFetch, page)
+  const {Books, totalCount, hasMore} = FetchData(page);
+  let pagesToFetch = (totalCount - page > 40 ) ? 40 : (totalCount - page)
+  const {lastBookElementRef} = ScrollComponent(setPageNumber, pagesToFetch, hasMore)
   
   return (
     <div container className={classes.root}>
