@@ -7,7 +7,6 @@ import ACTIONS from "../Actions/Actions";
 export const SearchComponent = () => {
   const { search, searchIcon, inputRoot, inputInput } = useStyles();
   const dispatch = useDispatch();
-
   const handleChange = (event) => {
     dispatch({ type: ACTIONS.search, payload: event.target.value });
   };
