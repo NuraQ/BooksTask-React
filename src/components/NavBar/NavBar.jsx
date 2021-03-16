@@ -6,6 +6,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { IconButton } from "@material-ui/core";
 import { Menu, MenuItem } from "@material-ui/core";
 import { SearchComponent } from "../SearchComponent/SearchComponent";
+import Avatar from '@material-ui/core/Avatar';
 
 const headersData = [
   {
@@ -56,6 +57,7 @@ const Header = () => {
         {logo}
         {openMenu ? <MobileDisplay /> : <DesktopDisplay />}
         <SearchComponent />
+        <Avatar >OP</Avatar>
       </Toolbar>
     );
   };

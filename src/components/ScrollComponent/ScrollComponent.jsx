@@ -1,6 +1,5 @@
 import { useRef, useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ACTIONS from "../Actions/Actions";
 
 export const ScrollComponent = ( totalCount, hasMore) => {
