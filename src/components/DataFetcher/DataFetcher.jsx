@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 
-const FetchData = (page) => {
-
-  const [Books,setItems] = useState([]);
-  const [totalCount,setCount] = useState(0);
-
-  const [hasMore, setHasMore] = useState(false)
+const FetchData = (page, query) => {
+  const [Books, setItems] = useState([]);
+  const [totalCount, setCount] = useState(0);
+  const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
+    setItems([]);
+  }, [query]);
 
+  useEffect(() => {
     fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:&maxResults=40&startIndex=${page}&key=AIzaSyCOBbymaad4eBVNFVF5JC-Pc0TQzE6AHOw`,
+      `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}&maxResults=40&startIndex=${page}&key=AIzaSyCOBbymaad4eBVNFVF5JC-Pc0TQzE6AHOw`,
       {
         method: "get",
         headers: {
@@ -20,19 +21,21 @@ const FetchData = (page) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setItems(state => [...state, ...data.items]);
-        setCount(data.totalItems)
-        if (data.totalItems - 40 === page){
-          setHasMore(false)
-        }else{
-          setHasMore(true)
+        if (data.totalItems - 40 === page  || data.totalItems  < 0 || data.totalItems  <=  page) {
+          setHasMore(false);
+          return ;
+        } else {
+          setHasMore(true);
         }
+        setItems((state) => [...state, ...data.items]);
+        setCount(data.totalItems);
+      
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, [page]);
-  return {Books, totalCount, hasMore }
+  }, [page, query]);
+  return { Books, totalCount, hasMore };
 };
 
 export default FetchData;
