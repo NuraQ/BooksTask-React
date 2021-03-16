@@ -13,7 +13,6 @@ export const BookList = () => {
   const page = useSelector(getPage);
   const selectBooks = (state) => state.searchState.status;
   const bookQuery = useSelector(selectBooks);
-  console.log("query",bookQuery)
   const {Books, totalCount, hasMore} = FetchData(page,bookQuery);
   let pagesToFetch = (totalCount - page > 40 ) ? 40 : (totalCount - page)
   const {lastBookElementRef} = ScrollComponent( pagesToFetch, hasMore)

@@ -5,6 +5,8 @@ const SearchReducer = (state = initialState, action) => {
   switch (action.type) {
     case ACTIONS.search: {
       return {
+        // Again, one less level of nesting to copy
+        ...state,
         status: action.payload,
         page: 0,
       };
