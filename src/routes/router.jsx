@@ -1,3 +1,4 @@
+  
 import React from "react";
 import {
   Router,
@@ -5,8 +6,8 @@ import {
   Switch,
 } from "react-router-dom";
 import Home from "../containers/Home/Home";
-import history from "./history";
 import Header from "../components/NavBar/NavBar";
+import history from "./history";
 
 const RouterComponent = () => {
   return (
