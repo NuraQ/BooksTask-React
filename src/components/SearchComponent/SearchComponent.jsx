@@ -18,7 +18,7 @@ export const SearchComponent = () => {
       </div>
       <InputBase
         placeholder="Search…"
-        className={`${inputRoot} ${inputInput}`}
+        className={clsx(inputRoot, inputInput)}
         inputProps={{ "aria-label": "search" }}
         onChange={(e) => {handleChange(e)}}
       />
