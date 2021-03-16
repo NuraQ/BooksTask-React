@@ -1,17 +1,13 @@
-import './App.css';
-import { BrowserRouter as Router } from "react-router-dom";
-import Home from './containers/Home/Home'
-import Header from './components/NavBar/NavBar';
-
+import RouterComponent from "./routes/router";
+import { ThemeProvider } from "@material-ui/core/styles";
+import {theme} from './Theme/Theme'
 function App() {
   return (
-    <Router>
-    <div >
-      <Header >
-        <Home />
-      </Header>
+    <div>
+      <ThemeProvider theme={theme}>
+        <RouterComponent />
+      </ThemeProvider>
     </div>
-    </Router>
   );
 }
 
