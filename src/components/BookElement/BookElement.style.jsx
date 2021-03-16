@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useBookStyle = makeStyles(() => ({
+export const useBookStyle = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginTop: "170px",
@@ -19,6 +19,8 @@ export const useBookStyle = makeStyles(() => ({
   },
   cardContent: {
     height: "100px",
+    display: 'flex',
+    flexDirection: 'column'
   },
 
   textWrapper: {
@@ -27,13 +29,22 @@ export const useBookStyle = makeStyles(() => ({
   },
   typoFont: {
     fontSize: 17,
+    [theme.breakpoints.down('md')]: {
+      fontSize: "0.8rem",
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 17,
+    },
+    fontFamily: 'Bowlby One SC  , cursive',
   },
+  
   icon: {
     marginLeft: "auto",
     alignSelf: "start",
   },
 
   timePublished: {
-    display: "flex",
+    marginTop: "auto",
+    alignSelf: "start",
   },
 }));

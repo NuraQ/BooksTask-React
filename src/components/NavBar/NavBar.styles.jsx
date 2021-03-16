@@ -30,7 +30,6 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       fontSize: "0.8rem",
       marginLeft: "0.5rem",
-      
     },
     fontFamily: "Open Sans, sans-serif",
     fontWeight: 400,

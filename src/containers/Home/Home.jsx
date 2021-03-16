@@ -1,8 +1,9 @@
 import {BookList} from '../../components/BookList/BookList'
+import {HomeLogo} from '../../components/HomeComponents/HomeLogo'
 
 const Home = () =>{
     return (
-        <div>
+        <div><HomeLogo />
             <BookList />
         </div>
     )
