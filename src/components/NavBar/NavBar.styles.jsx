@@ -27,13 +27,13 @@ export const useStyles = makeStyles((theme) => ({
 
     },
     [theme.breakpoints.down('sm')]: {
-      fontSize: "0.8rem",
-      marginLeft: "0.5rem",
+      fontSize: "2.0em",
+      marginLeft: "0.7em",
     },
     fontWeight: 400,
     size: "18px",
     color: "#808080",
-    marginLeft: "3rem",
+    marginLeft: "4em",
     alignSelf: "stretch",
     textDecoration: 'none',
     paddingTop: '15px',
