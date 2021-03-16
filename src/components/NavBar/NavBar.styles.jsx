@@ -12,6 +12,7 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: "4rem",
     width: "200px",
     [theme.breakpoints.down('sm')]: {
+      marginLeft: '0.7em'
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: "1rem",
@@ -23,11 +24,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('md')]: {
       fontSize: "0.9em",
-      marginLeft: "2em",
 
     },
     [theme.breakpoints.down('sm')]: {
-      marginLeft: "1em",
+      marginLeft: "2em",
 
     },
     fontWeight: 400,
@@ -36,7 +36,7 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: "4em",
     alignSelf: "stretch",
     textDecoration: 'none',
-    paddingTop: '15px',
+    paddingTop: '17px',
     textAlign: 'center'
   },
   mobileMenu: {
