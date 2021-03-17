@@ -1,14 +1,8 @@
 
-
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import {useBookStyle} from './BookElement.style'
 import React, {forwardRef} from "react";
+import {CardActionArea, Card, CardContent, CardMedia, Typography, Grid} from "@material-ui/core";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import {useBookStyle} from './BookElement.style'
 
 export const BookElement = forwardRef((props,ref) => {
     const classes = useBookStyle();

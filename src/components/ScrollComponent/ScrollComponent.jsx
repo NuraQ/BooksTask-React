@@ -1,10 +1,12 @@
 import { useRef, useCallback } from "react";
 
-export const ScrollComponent = (setPageNumber, totalCount, hasMore) => {
+export const ScrollComponent = (setPageNumber, totalCount, hasMore, loading) => {
 
   const observer = useRef();
-  console.log(hasMore,"hasMore inside")
   const lastBookElementRef = useCallback((node) => {
+    if(loading){
+      return 
+    }
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver((entries) => {
  
@@ -13,6 +15,6 @@ export const ScrollComponent = (setPageNumber, totalCount, hasMore) => {
       }
     });
     if (node) observer.current.observe(node);
-  }, [hasMore,setPageNumber,totalCount]);
+  }, [hasMore, loading]);
   return { lastBookElementRef };
 };
