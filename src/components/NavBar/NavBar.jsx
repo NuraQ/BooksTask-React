@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink as RouterLink } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -7,7 +8,6 @@ import {
   Menu,
   MenuItem,
 } from "@material-ui/core";
-import { NavLink as RouterLink } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import { SearchComponent } from "../SearchComponent/SearchComponent";
 import { useStyles } from "./NavBar.styles";
@@ -28,6 +28,11 @@ const headersData = [
 ];
 
 const Header = () => {
+  const [isMobile, setIsMobile] = useState({
+    openMenu: false,
+    anchorEl: null,
+  });
+  const { openMenu, anchorEl } = isMobile;
   const {
     header,
     logoStyle,
@@ -37,11 +42,7 @@ const Header = () => {
     anchorOriginAttr,
     mobileMenu
   } = useStyles();
-  const [isMobile, setIsMobile] = useState({
-    openMenu: false,
-    anchorEl: null,
-  });
-  const { openMenu, anchorEl } = isMobile;
+
   const logo = (
     <Typography variant="h6" component="h1" className={logoStyle}>
       Book Store
