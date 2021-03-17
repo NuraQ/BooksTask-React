@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) =>
   ({
     root: {
       flexGrow: 1,
-      marginTop: '170px'
+      marginTop: '170px',
     },
     paper: {
       padding: theme.spacing(2),
@@ -27,6 +27,11 @@ export const useStyles = makeStyles((theme) =>
       fontWeight: 'bold',
       fontSize: '18px',
       marginTop: 'auto',
+
+    },
+    description:{
+      margin: '50px',
+      fontFamily: 'cursive'
 
     }
   }),

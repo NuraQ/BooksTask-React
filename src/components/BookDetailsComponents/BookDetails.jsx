@@ -1,14 +1,13 @@
 import React from "react";
 import { useStyles } from "./BookDetails.style";
 import {
-  Button,
   Grid,
   Paper,
   Typography,
   ButtonBase,
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
-
+import {CreditCard} from '../CreditCardPopUp/CreditCard'
 const BookDetailsData = (props) => {
   const classes = useStyles();
   return (
@@ -48,9 +47,7 @@ const BookDetailsData = (props) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" color="primary" disableElevation>
-                    Buy Book
-                  </Button>
+                  <CreditCard />
                 </Grid>
               </Grid>
             </Grid>
@@ -63,14 +60,17 @@ const BookDetailsData = (props) => {
               </Grid>
               <Grid item>
                 <Rating
-                  name="simple-controlled"
-                 
+                  name="simple-controlled"           
                 />
               </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Paper>
+
+      <Typography className={classes.description}>
+        {props.Book.volumeInfo.description ? props.Book.volumeInfo.description : "" }
+      </Typography>
     </div>
   );
 };
