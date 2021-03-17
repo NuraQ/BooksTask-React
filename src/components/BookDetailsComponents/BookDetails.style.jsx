@@ -21,5 +21,13 @@ export const useStyles = makeStyles((theme) =>
       maxWidth: '100%',
       maxHeight: '100%',
     },
+    bookInfo: {
+    },
+    price:{
+      fontWeight: 'bold',
+      fontSize: '18px',
+      marginTop: 'auto',
+
+    }
   }),
 );
