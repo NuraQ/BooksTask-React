@@ -11,12 +11,9 @@ import {
   Box,
   Grid,
   Typography,
-  Dialog
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import SignUp from '../SignUp/SignUp'
-
-import { useStyles } from "./login.style";
+import { useStyles } from "./SignUp.style";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -32,9 +29,7 @@ function Copyright() {
 
 
 
-export default function SignInSide() {
-  const [open, setOpen] = useState(true);
-  const [isSignupActive, openSignup] = useState(false);
+export default function SignUp() {
 
   const [credentials, setCredentials] = useState({
     email: "",
@@ -57,26 +52,13 @@ export default function SignInSide() {
   }
   const displaySignUp = ()=>{
     signInPannel.current.classList.add(classes.movePanel);
-    openSignup(true)
   }
-  const handleClose = () => {
-    setOpen(false);
-  };
+
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="form-dialog-title"
-      fullWidth={true}
-      maxWidth={"md"}
-      className={classes.root}
-    >
+
       <Grid container component="main">
-
         <CssBaseline />
-       <Grid item sm={6} className={classes.image} ref={signInPannel}  /> 
         <Grid item sm={6} component={Paper} className={classes.login} elevation={6} square  >
-
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
@@ -122,7 +104,7 @@ export default function SignInSide() {
                 className={classes.submit}
                 onClick={submit}
               >
-                Sign In
+                Sign UP
               </Button>
               <Grid container>
                 <Grid item xs>
@@ -135,22 +117,13 @@ export default function SignInSide() {
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
-
               </Grid>
-
               <Box mt={5}>
                 <Copyright />
               </Box>
             </form>
-
           </div>
-
         </Grid>
-
       </Grid>
-      {isSignupActive ?<Grid item  > <SignUp /> </Grid>: <div></div>}
-
-    </Dialog>
-    
   );
 }
