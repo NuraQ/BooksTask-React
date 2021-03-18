@@ -148,7 +148,7 @@ export default function SignInSide() {
         </Grid>
 
       </Grid>
-      {isSignupActive ?<Grid item  > <SignUp /> </Grid>: <div></div>}
+      {/* {isSignupActive ?<Grid item  > <SignUp /> </Grid>: <div></div>} */}
 
     </Dialog>
     
