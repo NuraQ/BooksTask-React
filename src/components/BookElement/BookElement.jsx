@@ -6,16 +6,20 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { useBookStyle } from "./BookElement.style";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import history from '../../routes/history';
 
 export const BookElement = forwardRef((props, ref) => {
   const classes = useBookStyle();
-  const navigate = (element) => {
-    history.push({
-      pathname: '/BookDetails',
-      state: element
-    })
+
+  const navigate = (element,setLoggedStatus) => {
+    // console.log(setLoggedStatus,"setLoggedStatus")
+    setLoggedStatus(true)
+    // setLoggedStatus(true)
+    // history.push({
+    //   pathname: '/BookDetails',
+    //   state: element
+    // })
 
   };
   return (
@@ -30,7 +34,7 @@ export const BookElement = forwardRef((props, ref) => {
                   : ""
               } `}
               className={classes.media}
-              onClick={() => {navigate(props.element)}}
+              onClick={() => {navigate(props.element, props.setLogged)}}
             ></CardMedia>
             <CardContent className={classes.cardContent}>
               <div className={classes.textWrapper}>

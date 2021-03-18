@@ -6,7 +6,7 @@ import { useGridStyles } from "./BookList.style";
 import {BookElement} from '../BookElement/BookElement'
 import { useSelector } from "react-redux";
 
-export const BookList = () => {
+export const BookList = (props) => {
   const classes = useGridStyles();
 
   const getPage = (state) => state.searchState.page;
@@ -16,7 +16,7 @@ export const BookList = () => {
   const {Books, totalCount, hasMore} = FetchData(page,bookQuery);
   let pagesToFetch = (totalCount - page > 40 ) ? 40 : (totalCount - page)
   const {lastBookElementRef} = ScrollComponent( pagesToFetch, hasMore)
-  
+  const setLogged = props.setIsLogged
   return (
     <div container className={classes.root}>
       <Grid container spacing={3}>
@@ -28,6 +28,7 @@ export const BookList = () => {
                 element={item}
                 key={`${index}`}
                 ref={lastBookElementRef}
+                setLogged={setLogged}
               />
             );
           } else {
@@ -36,6 +37,8 @@ export const BookList = () => {
                 title={item.volumeInfo.title}
                 element={item}
                 key={`${index}`}
+                setLogged={setLogged}
+
               />
             );
           }
