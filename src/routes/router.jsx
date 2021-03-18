@@ -5,14 +5,16 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Home from "../containers/Home/Home";
 import Header from "../components/NavBar/NavBar";
 import history from "./history";
 
 const RouterComponent = () => {
+  const dispatch = useDispatch();
   return (
     <Router history={history}>
-      <Header />
+      <Header dispatch={dispatch} />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/Home" component={Home} />

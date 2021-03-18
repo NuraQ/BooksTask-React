@@ -27,7 +27,7 @@ const headersData = [
   },
 ];
 
-const Header = () => {
+const Header = (props) => {
   const {
     header,
     logoStyle,
@@ -42,6 +42,7 @@ const Header = () => {
     anchorEl: null,
   });
   const { openMenu, anchorEl } = isMobile;
+  const dispatch = props.dispatch
   const logo = (
     <Typography variant="h6" component="h1" className={logoStyle}>
       Book Store
@@ -65,6 +66,7 @@ const Header = () => {
     }));
   };
   const MenuBar = () => {
+    console.log(dispatch,"dispatchSD")
     return (
       <Toolbar>
         <IconButton onClick={handleMenuView}>
@@ -74,7 +76,7 @@ const Header = () => {
         </IconButton>
         {logo}
         {openMenu ? <MobileDisplay /> : <DesktopDisplay />}
-        <SearchComponent />
+        <SearchComponent dispatch={props.dispatch}/>
       </Toolbar>
     );
   };
