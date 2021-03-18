@@ -1,7 +1,7 @@
 import SearchIcon from "@material-ui/icons/Search";
-import { useStyles } from "./SearchComponent.style";
 import { InputBase } from "@material-ui/core";
 import clsx from 'clsx';
+import { useStyles } from "./SearchComponent.style";
 
 export const SearchComponent = () => {
   const { search, searchIcon, inputRoot, inputInput } = useStyles();
