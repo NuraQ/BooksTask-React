@@ -13,6 +13,10 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     height: "35px",
     alignSelf: "center",
+     [theme.breakpoints.down("md")]: {
+      marginLeft: "20px",
+    },
+
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
