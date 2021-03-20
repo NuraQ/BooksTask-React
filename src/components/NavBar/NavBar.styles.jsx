@@ -5,14 +5,14 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
   },
   logoStyle: {
-    fontFamily: "Work Sans, sans-serif",
+    fontFamily: " sans-serif",
     fontWeight: 600,
     color: "#808080",
     textAlign: "left",
     marginLeft: "4rem",
     width: "200px",
     [theme.breakpoints.down('sm')]: {
-      marginLeft: "0.5rem",
+      marginLeft: '0.7em'
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: "1rem",
@@ -23,21 +23,32 @@ export const useStyles = makeStyles((theme) => ({
       display:'none'
     },
     [theme.breakpoints.down('md')]: {
-      fontSize: "0.9rem",
-      marginLeft: "1.5rem",
+      fontSize: "0.9em",
 
     },
     [theme.breakpoints.down('sm')]: {
-      fontSize: "0.8rem",
-      marginLeft: "0.5rem",
-      
+      marginLeft: "2em",
+
     },
-    fontFamily: "Open Sans, sans-serif",
     fontWeight: 400,
     size: "18px",
     color: "#808080",
-    marginLeft: "3rem",
+    marginLeft: "4em",
     alignSelf: "stretch",
+    textDecoration: 'none',
+    paddingTop: '17px',
+    textAlign: 'center'
+  },
+  mobileMenu: {
+    textDecoration: 'none',
+  },
+  active:{
+    fontWeight: "bold",
+    borderBottom: "solid 3px #20B2AA",
+  },
+  anchorOriginAttr:{
+    vertical: "top",
+    horizontal: "right",
   },
   search: {    position: 'relative',
     borderRadius: theme.shape.borderRadius,

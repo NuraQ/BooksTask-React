@@ -1,19 +1,23 @@
+  
 import React from "react";
 import {
   Router,
   Route,
   Switch,
 } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Home from "../containers/Home/Home";
-import history from "./history";
 import Header from "../components/NavBar/NavBar";
 import PurchasedBooks from '../containers/PurchasedBooks/PurchasedBooks';
 import BookDetails from '../containers/BookDetails/BookDetails';
 import AuthRoute from './AuthRoute'
+import history from "./history";
+
 const RouterComponent = () => {
+  const dispatch = useDispatch();
   return (
     <Router history={history}>
-      <Header />
+      <Header dispatch={dispatch} />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/Home" component={Home} />
