@@ -1,15 +1,16 @@
-import {useState} from 'react'
+import { useState } from "react";
 import { BookList } from "../../components/BookList/BookList";
 import { HomeLogo } from "../../components/HomeComponents/HomeLogo";
-import Login from '../../components/Login/Login'
-const Home = () => {
-  const [isLoggedIn,setIsLogged] = useState(false);
+import Login from '../../components/Login/Login';
 
+
+const Home = () => {
+  const [displayLogin, setDisplayLogin] = useState(false)
   return (
     <div>
       <HomeLogo />
-      {isLoggedIn ? <Login /> : <div></div> }
-      <BookList setIsLogged={setIsLogged} />
+      {displayLogin ? <Login setDisplayLogin={setDisplayLogin} /> : <div></div> }
+      <BookList showLogin={setDisplayLogin}  />
     </div>
   );
 };

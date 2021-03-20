@@ -3,6 +3,11 @@ import Image from "../../images/img.jpg";
 export const useStyles = makeStyles((theme) => ({
     root: {
       height: "100vh",
+  
+    },
+    parent:{
+      display: 'flex',
+      direction: 'row'
     },
     image: {
       backgroundImage:` url(${Image})`,
@@ -18,6 +23,13 @@ export const useStyles = makeStyles((theme) => ({
       flexShrink: 1,
       flexBasis: 'auto',
       transition: `all 2s`,
+    },
+
+    test:{
+      flexGrow: 0.00001,
+      flexBasis: 'auto',
+      transition: `all 2s`,
+      
     },
     paper: {
       margin: theme.spacing(8, 4),
@@ -43,5 +55,10 @@ export const useStyles = makeStyles((theme) => ({
     },
     movePanel:{
       flexGrow: 0.0001,
+    },
+    movePanel2:{
+      flexGrow: 1.0001,
+      color: 'blue'
+
     }
   }));

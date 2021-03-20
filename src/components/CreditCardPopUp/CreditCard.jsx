@@ -9,7 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { CircularProgress } from "@material-ui/core";
 import { useLoaderStyle } from "./loader.style";
 
-export const CreditCard = () => {
+export const CreditCard = (props) => {
   const [open, setOpen] = React.useState(false);
   const [loader, displayLoader] = React.useState(false);
   const { loaderStyle } = useLoaderStyle();
@@ -19,13 +19,17 @@ export const CreditCard = () => {
 
   const handleClose = () => {
     displayLoader(true);
+    setOpen(false);
+  };
 
+  const handlePurchase = () => {
+    displayLoader(true);
+ 
     setTimeout(() => {
       displayLoader(false);
       setOpen(false);
     }, 5000);
   };
-
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -59,13 +63,12 @@ export const CreditCard = () => {
           />
           {loader ? <CircularProgress className={loaderStyle} /> : <div></div>}
         </DialogContent>
-
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} >
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
+          <Button onClick={handlePurchase} >
+            confirm 
           </Button>
         </DialogActions>
       </Dialog>

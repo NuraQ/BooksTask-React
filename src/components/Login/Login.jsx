@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Avatar,
   Button,
@@ -11,11 +11,10 @@ import {
   Box,
   Grid,
   Typography,
-  Dialog
+  Dialog,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import SignUp from '../SignUp/SignUp'
-
+import SignUp from "../SignUp/SignUp";
 import { useStyles } from "./login.style";
 function Copyright() {
   return (
@@ -30,9 +29,7 @@ function Copyright() {
   );
 }
 
-
-
-export default function SignInSide() {
+export default function SignInSide(props) {
   const [open, setOpen] = useState(true);
   const [isSignupActive, openSignup] = useState(false);
 
@@ -40,27 +37,45 @@ export default function SignInSide() {
     email: "",
     password: "",
   });
-  const signInPannel= useRef()
-  const classes = useStyles();
-  const handleEmailChange = (event) =>{
-    setCredentials({...credentials, email: event.target.value })
-  }
-  const handlePasswordChange = (event) => {
-    setCredentials({...credentials, password: event.target.value })
-  }
-  const submit = ()=>{
-    let loggedUser = localStorage.getItem('loggedUser');
-    let user = JSON.parse(loggedUser);
-    if (user.email === credentials.email && user.password === credentials.password){
+  const signInPannel = useRef();
+  const signUp = useRef();
 
+  const classes = useStyles();
+  const handleEmailChange = (event) => {
+    setCredentials({ ...credentials, email: event.target.value });
+  };
+  const handlePasswordChange = (event) => {
+    setCredentials({ ...credentials, password: event.target.value });
+  };
+  const submit = () => {
+    var users = JSON.parse(localStorage.getItem("users"));
+    users = users ? users : [];
+    for (let user of users) {
+      if (
+        user.credentials.email == credentials.email &&
+        user.credentials.password == credentials.password
+      ) {
+        localStorage.setItem("loggedUser", user);
+        alert('logged In successfully!!')
+      }
     }
-  }
-  const displaySignUp = ()=>{
+  };
+
+  const displaySignUp = () => {
     signInPannel.current.classList.add(classes.movePanel);
-    openSignup(true)
-  }
+    setTimeout(() => {
+      openSignup(true);
+    }, 2000);
+  };
+  useEffect(() => {
+    if (isSignupActive) {
+      signUp.current.classList.add(classes.movePanel2);
+    }
+  }, [isSignupActive]);
+
   const handleClose = () => {
     setOpen(false);
+    props.setDisplayLogin(false)
   };
   return (
     <Dialog
@@ -71,12 +86,17 @@ export default function SignInSide() {
       maxWidth={"md"}
       className={classes.root}
     >
-      <Grid container component="main">
-
+      <Grid className={classes.parent} container component="main">
         <CssBaseline />
-       <Grid item sm={6} className={classes.image} ref={signInPannel}  /> 
-        <Grid item sm={6} component={Paper} className={classes.login} elevation={6} square  >
-
+        <Grid item sm={6} className={classes.image} ref={signInPannel} />
+        <Grid
+          item
+          sm={6}
+          component={Paper}
+          className={classes.login}
+          elevation={6}
+          square
+        >
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
@@ -108,14 +128,12 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
                 onChange={handlePasswordChange}
-
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
@@ -135,22 +153,23 @@ export default function SignInSide() {
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
-
               </Grid>
 
               <Box mt={5}>
                 <Copyright />
               </Box>
             </form>
-
           </div>
-
         </Grid>
-
+        {isSignupActive ? (
+          <Grid item xs={6} ref={signUp} className={classes.test}>
+            <SignUp className={classes.shildTest} />{" "}
+          </Grid>
+        ) : (
+          <div></div>
+        )}
       </Grid>
-      {/* {isSignupActive ?<Grid item  > <SignUp /> </Grid>: <div></div>} */}
-
-    </Dialog>
     
+    </Dialog>
   );
 }

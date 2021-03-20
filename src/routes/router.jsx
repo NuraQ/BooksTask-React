@@ -9,7 +9,7 @@ import history from "./history";
 import Header from "../components/NavBar/NavBar";
 import PurchasedBooks from '../containers/PurchasedBooks/PurchasedBooks';
 import BookDetails from '../containers/BookDetails/BookDetails';
-
+import AuthRoute from './AuthRoute'
 const RouterComponent = () => {
   return (
     <Router history={history}>
@@ -17,8 +17,8 @@ const RouterComponent = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/Home" component={Home} />
-        <Route path="/PurchasedBooks" component={PurchasedBooks}/>
-        <Route path="/BookDetails" component={BookDetails}/>
+        <AuthRoute path="/PurchasedBooks" Component={PurchasedBooks}/>
+        <AuthRoute path="/BookDetails" Component={BookDetails}/>
 
       </Switch>
     </Router>

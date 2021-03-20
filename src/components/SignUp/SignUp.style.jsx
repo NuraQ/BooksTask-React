@@ -3,6 +3,10 @@ import Image from "../../images/img.jpg";
 export const useStyles = makeStyles((theme) => ({
     root: {
       height: "100vh",
+      display: 'flex',
+      flexDirection:'column',
+      backColor: 'red',
+
     },
     image: {
       backgroundImage:` url(${Image})`,
@@ -13,17 +17,15 @@ export const useStyles = makeStyles((theme) => ({
           : theme.palette.grey[900],
       backgroundSize: "cover",
       backgroundPosition: "center",
-      
-      flexGrow: 1,
-      flexShrink: 1,
-      flexBasis: 'auto',
-      transition: `all 2s`,
+
+ 
     },
     paper: {
       margin: theme.spacing(8, 4),
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+
     },
     avatar: {
       margin: theme.spacing(1),
@@ -42,6 +44,9 @@ export const useStyles = makeStyles((theme) => ({
   
     },
     movePanel:{
-      flexGrow: 0.0001,
+        flexGrow: 1,
+        flexShrink: 1,
+        flexBasis: 'auto',
+        transition: `all 2s`,
     }
   }));
