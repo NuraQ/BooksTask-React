@@ -47,7 +47,7 @@ const BookDetailsData = (props) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <CreditCard />
+                  <CreditCard book={props.Book} />
                 </Grid>
               </Grid>
             </Grid>

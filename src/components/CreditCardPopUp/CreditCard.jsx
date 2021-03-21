@@ -24,8 +24,34 @@ export const CreditCard = (props) => {
 
   const handlePurchase = () => {
     displayLoader(true);
- 
+
+    let bookList = localStorage.getItem("bookList");
+    let user = localStorage.getItem("loggedUser");
+    bookList = bookList ? JSON.parse(bookList) : [];
+    let arr = bookList[bookList.length] ? bookList[bookList.length] : [];
+
+    //if user already bought books
+    let allUsersbooks = JSON.parse(localStorage.getItem("bookList"));
+    if (allUsersbooks != null) {
+      for (let userBooks of allUsersbooks) {
+        if (userBooks[0].includes(user)) {
+          console.log(userBooks);
+          console.log(bookList[bookList.length - 1], "arr");
+          bookList[bookList.length - 1].push(props.book);
+          console.log(bookList[bookList.length - 1], "arr2");
+          localStorage.setItem("bookList", JSON.stringify(bookList));
+          return;
+        }
+      }
+    }
+    //if user is buying a book for the first time
+    if (arr.length == 0) {
+      arr.push(user);
+    }
+    arr.push(props.book);
+    bookList[bookList.length] = arr;
     setTimeout(() => {
+      localStorage.setItem("bookList", JSON.stringify(bookList));
       displayLoader(false);
       setOpen(false);
     }, 5000);
@@ -64,12 +90,8 @@ export const CreditCard = (props) => {
           {loader ? <CircularProgress className={loaderStyle} /> : <div></div>}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} >
-            Cancel
-          </Button>
-          <Button onClick={handlePurchase} >
-            confirm 
-          </Button>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handlePurchase}>confirm</Button>
         </DialogActions>
       </Dialog>
     </div>

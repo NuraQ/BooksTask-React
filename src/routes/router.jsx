@@ -8,6 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import Home from "../containers/Home/Home";
 import Header from "../components/NavBar/NavBar";
+import LogOutPopup from "../components/LogoutPopup/Logout";
 import PurchasedBooks from '../containers/PurchasedBooks/PurchasedBooks';
 import BookDetails from '../containers/BookDetails/BookDetails';
 import AuthRoute from './AuthRoute'
@@ -23,6 +24,7 @@ const RouterComponent = () => {
         <Route path="/Home" component={Home} />
         <AuthRoute path="/PurchasedBooks" Component={PurchasedBooks}/>
         <AuthRoute path="/BookDetails" Component={BookDetails}/>
+        <AuthRoute path="/Logout" Component={LogOutPopup}/>
 
       </Switch>
     </Router>

@@ -1,12 +1,21 @@
-import { useLocation } from 'react-router-dom';
+import { BookList } from "../../components/BookList/BookList";
 
 const PurchasedBooks = () => {
-    const location = useLocation();
-
-    console.log(location.state)
-
+    let allUsersbooks = JSON.parse(localStorage.getItem("bookList"));
+    let user = localStorage.getItem("loggedUser");
+    let books = []
+    if (allUsersbooks != null) {
+      for (let userBooks of allUsersbooks) {
+        if (userBooks[0].includes(user)) {
+            books = userBooks.slice(1)
+            break;
+        }
+      }
+    }
     return (
-        <div>blaa</div>
+        <BookList
+        Books={books}
+      />
     )
 }
 export default PurchasedBooks;

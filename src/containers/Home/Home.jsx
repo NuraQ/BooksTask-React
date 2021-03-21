@@ -1,16 +1,21 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import FetchData from "../../components/DataFetcher/DataFetcher";
+import {ScrollComponent} from '../../components/ScrollComponent/ScrollComponent';
 import { BookList } from "../../components/BookList/BookList";
 import { HomeLogo } from "../../components/HomeComponents/HomeLogo";
-import { useDispatch, useSelector } from "react-redux";
 import Login from "../../components/Login/Login";
 
 const Home = () => {
+  const [displayLogin, setDisplayLogin] = useState(false);
   const getPage = (state) => state.searchState.page;
   const currentPage = useSelector(getPage);
   const dispatch = useDispatch();
   const selectBooks = (state) => state.searchState.status;
   const bookQuery = useSelector(selectBooks);
-  const [displayLogin, setDisplayLogin] = useState(false);
+  const {Books, totalCount, hasMore, loading} = FetchData(currentPage,bookQuery);
+  let pagesToFetch = (totalCount - currentPage > 40 ) ? 40 : (totalCount - currentPage)
+  const {lastBookElementRef} = ScrollComponent( pagesToFetch, hasMore, dispatch, currentPage, loading)
   return (
     <div>
       <HomeLogo />
@@ -18,8 +23,8 @@ const Home = () => {
       <BookList
         showLogin={setDisplayLogin}
         dispatch={dispatch}
-        currentPage={currentPage}
-        bookQuery={bookQuery}
+        lastBookElementRef={lastBookElementRef}
+        Books={Books}
       />
     </div>
   );

@@ -29,6 +29,11 @@ const headersData = [
 ];
 
 const Header = (props) => {
+ 
+  const [isMobile, setIsMobile] = useState({
+    openMenu: false,
+    anchorEl: null,
+  });
   const {
     header,
     logoStyle,
@@ -38,10 +43,6 @@ const Header = (props) => {
     anchorOriginAttr,
     mobileMenu
   } = useStyles();
-  const [isMobile, setIsMobile] = useState({
-    openMenu: false,
-    anchorEl: null,
-  });
   const { openMenu, anchorEl } = isMobile;
   const dispatch = props.dispatch
   const logo = (
@@ -67,7 +68,6 @@ const Header = (props) => {
     }));
   };
   const MenuBar = () => {
-    console.log(dispatch,"dispatchSD")
     return (
       <Toolbar>
         <IconButton onClick={handleMenuView}>
@@ -98,7 +98,7 @@ const Header = (props) => {
   };
 
   const MobileDisplay = () => {
-    const data = headersData.map(({ label, href,index }) => {
+    const data = headersData.map(({ label, href }) => {
       return (
         <MenuItem key={label}>
           <RouterLink

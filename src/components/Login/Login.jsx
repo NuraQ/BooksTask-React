@@ -52,10 +52,10 @@ export default function SignInSide(props) {
     users = users ? users : [];
     for (let user of users) {
       if (
-        user.credentials.email == credentials.email &&
-        user.credentials.password == credentials.password
+        user.credentials.email === credentials.email &&
+        user.credentials.password === credentials.password
       ) {
-        localStorage.setItem("loggedUser", user);
+        localStorage.setItem("loggedUser", JSON.stringify(user));
         alert('logged In successfully!!')
       }
     }
@@ -163,7 +163,7 @@ export default function SignInSide(props) {
         </Grid>
         {isSignupActive ? (
           <Grid item xs={6} ref={signUp} className={classes.test}>
-            <SignUp className={classes.shildTest} />{" "}
+            <SignUp className={classes.shildTest} />
           </Grid>
         ) : (
           <div></div>
