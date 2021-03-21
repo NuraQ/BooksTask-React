@@ -21,7 +21,8 @@ export const useStyles = makeStyles((theme) =>
       maxWidth: '100%',
       maxHeight: '100%',
     },
-    bookInfo: {
+    column: {
+      direction:'column'
     },
     price:{
       fontWeight: 'bold',

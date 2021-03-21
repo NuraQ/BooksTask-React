@@ -1,5 +1,4 @@
 import React from "react";
-import { useStyles } from "./BookDetails.style";
 import {
   Grid,
   Paper,
@@ -7,7 +6,9 @@ import {
   ButtonBase,
 } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
-import {CreditCard} from '../CreditCardPopUp/CreditCard'
+import {CreditCard} from '../CreditCardPopUp/CreditCard';
+import { useStyles } from "./BookDetails.style";
+
 const BookDetailsData = (props) => {
   const classes = useStyles();
   return (
@@ -28,7 +29,7 @@ const BookDetailsData = (props) => {
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
-            <Grid item xs container direction="column">
+            <Grid item xs container direction={classes.column}>
               <Grid xs={12} spacing={3} container item>
                 <Grid item>
                   <Typography gutterBottom variant="subtitle1">
