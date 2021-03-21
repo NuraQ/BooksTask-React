@@ -37,7 +37,6 @@ export const BookElement = forwardRef((props,ref) => {
                 <Typography
                   className={classes.timePublished}
                   variant="body2"
-                  color="textSecondary"
                   component="p"
                 >
                   2 weeks ago

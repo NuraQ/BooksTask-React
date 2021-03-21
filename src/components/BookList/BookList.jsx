@@ -1,19 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import {Grid} from '@material-ui/core';
-import FetchData from "../DataFetcher/DataFetcher";
-import {ScrollComponent} from '../ScrollComponent/ScrollComponent';
 import {BookElement} from '../BookElement/BookElement'
 import { useGridStyles } from './BookList.style';
 
-
-export const BookList = () => {
-  
-  const [page, setPageNumber] = useState(0)
-  const {Books, totalCount, hasMore, loading} = FetchData(page);
-  let pagesToFetch = (totalCount - page > 40 ) ? 40 : (totalCount - page)
-  const {lastBookElementRef} = ScrollComponent(setPageNumber, pagesToFetch, hasMore, loading)
+export const BookList = (props) => {
   const classes = useGridStyles();
-
+  let Books = props.Books;
+  let lastBookElementRef = props.lastBookElementRef
   return (
     <div container className={classes.root}>
       <Grid container spacing={3}>

@@ -35,7 +35,7 @@ export const useBookStyle = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       fontSize: 17,
     },
-    fontFamily: 'Bowlby One SC  , cursive',
+    fontFamily: 'cursive',
   },
   
   icon: {
@@ -46,5 +46,6 @@ export const useBookStyle = makeStyles((theme) => ({
   timePublished: {
     marginTop: "auto",
     alignSelf: "start",
+    color: "textSecondary",  
   },
 }));
