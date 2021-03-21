@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
   },
   logoStyle: {
-    fontFamily: " sans-serif",
+    fontFamily: "sans-serif",
     fontWeight: 600,
     color: "#808080",
     textAlign: "left",
@@ -31,19 +31,20 @@ export const useStyles = makeStyles((theme) => ({
    
     fontWeight: 400,
     size: "18px",
-    color: "#808080",
+    color: theme.palette.basicColors.lightGray,
     marginLeft: "4em",
     alignSelf: "stretch",
     textDecoration: 'none',
-    paddingTop: '17px',
-    textAlign: 'center'
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems:'center',
   },
-  mobileMenu: {
+  mobileMenuStyle: {
     textDecoration: 'none',
   },
   active:{
     fontWeight: "bold",
-    borderBottom: "solid 3px #20B2AA",
+    borderBottom: `solid 3px ${theme.palette.primary.main}`,
   },
   anchorOriginAttr:{
     vertical: "top",

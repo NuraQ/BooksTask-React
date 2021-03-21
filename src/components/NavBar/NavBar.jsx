@@ -28,11 +28,11 @@ const headersData = [
 ];
 
 const Header = () => {
-  const [isMobile, setIsMobile] = useState({
+  const [mobileMenu, setMobileMenu] = useState({
     openMenu: false,
     anchorEl: null,
   });
-  const { openMenu, anchorEl } = isMobile;
+  const { openMenu, anchorEl } = mobileMenu;
   const {
     header,
     logoStyle,
@@ -40,7 +40,7 @@ const Header = () => {
     menuIcon,
     active,
     anchorOriginAttr,
-    mobileMenu
+    mobileMenuStyle
   } = useStyles();
 
   const logo = (
@@ -51,7 +51,7 @@ const Header = () => {
 
   const handleMenuView = (event) => {
     let target = event.currentTarget;
-    setIsMobile((prevState) => ({
+    setMobileMenu((prevState) => ({
       ...prevState,
       openMenu: true,
       anchorEl: target,
@@ -59,7 +59,7 @@ const Header = () => {
   };
 
   const handleClose = () => {
-    setIsMobile((prevState) => ({
+    setMobileMenu((prevState) => ({
       ...prevState,
       openMenu: false,
       anchorEl: null,
@@ -102,7 +102,7 @@ const Header = () => {
           <RouterLink
             key={label}
             to={href}
-            className={mobileMenu}
+            className={mobileMenuStyle}
             activeClassName={active}
           >
             {label}
