@@ -46,6 +46,6 @@ export const useBookStyle = makeStyles((theme) => ({
   timePublished: {
     marginTop: "auto",
     alignSelf: "start",
-    color: "textSecondary",  
+    color: `${theme.palette.secondary.main}`,  
   },
 }));

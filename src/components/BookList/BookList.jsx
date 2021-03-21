@@ -1,6 +1,6 @@
 import React from "react";
 import {Grid} from '@material-ui/core';
-import {BookElement} from '../BookElement/BookElement'
+import {Book} from '../Book/book'
 import { useGridStyles } from './BookList.style';
 
 export const BookList = (props) => {
@@ -13,7 +13,7 @@ export const BookList = (props) => {
         {Books.map((item, index) => {
           if (Books.length === index + 1) {
             return (
-              <BookElement
+              <Book
                 title={item.volumeInfo.title}
                 element={item}
                 key={`${index}`}
@@ -22,7 +22,7 @@ export const BookList = (props) => {
             );
           } else {
             return (
-              <BookElement
+              <Book
                 title={item.volumeInfo.title}
                 element={item}
                 key={`${index}`}
