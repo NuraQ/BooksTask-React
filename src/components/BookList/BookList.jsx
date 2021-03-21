@@ -11,24 +11,14 @@ export const BookList = (props) => {
     <div container className={classes.root}>
       <Grid container spacing={3}>
         {Books.map((item, index) => {
-          if (Books.length === index + 1) {
             return (
               <Book
                 title={item.volumeInfo.title}
                 element={item}
                 key={`${index}`}
-                ref={lastBookElementRef}
-              />
-            );
-          } else {
-            return (
-              <Book
-                title={item.volumeInfo.title}
-                element={item}
-                key={`${index}`}
-              />
-            );
-          }
+                ref={ Books.length === index + 1 ? lastBookElementRef : null}
+                />
+            )
         })}
       </Grid>
     </div>
