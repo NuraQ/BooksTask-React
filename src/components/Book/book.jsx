@@ -16,7 +16,7 @@ export const Book = forwardRef((props, ref) => {
     (props.element.volumeInfo.imageLinks &&
       props.element.volumeInfo.imageLinks.thumbnail) ||
     "";
-
+  const releaseDate = new Date().getFullYear() -  parseInt(props.element.volumeInfo.publishedDate)
   return (
     <React.Fragment>
       <Grid ref={ref} item xs={12} sm={4} md={3}>
@@ -42,7 +42,7 @@ export const Book = forwardRef((props, ref) => {
                 variant="body2"
                 component="p"
               >
-                {props.element.volumeInfo.title}
+                {releaseDate + ' years ago'}
               </Typography>
             </CardContent>
           </CardActionArea>
