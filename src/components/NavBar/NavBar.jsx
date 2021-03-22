@@ -1,12 +1,16 @@
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import React, { useState } from "react";
-import { useStyles } from "./NavBar.styles";
 import { NavLink as RouterLink } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
-import { IconButton } from "@material-ui/core";
-import { Menu, MenuItem } from "@material-ui/core";
 import { SearchComponent } from "../SearchComponent/SearchComponent";
-import Avatar from '@material-ui/core/Avatar';
+import { useStyles } from "./NavBar.styles";
 
 const headersData = [
   {
@@ -24,32 +28,47 @@ const headersData = [
 ];
 
 const Header = () => {
-  const { header, logoStyle, menuButton, menuIcon } = useStyles();
-  const [state, setState] = useState({
+  const [mobileMenu, setMobileMenu] = useState({
     openMenu: false,
     anchorEl: null,
   });
-  const { openMenu, anchorEl } = state;
+  const { openMenu, anchorEl } = mobileMenu;
+  const {
+    header,
+    logoStyle,
+    menuButton,
+    menuIcon,
+    active,
+    anchorOriginAttr,
+    mobileMenuStyle
+  } = useStyles();
+
   const logo = (
     <Typography variant="h6" component="h1" className={logoStyle}>
       Book Store
     </Typography>
   );
 
-  const setMobileView = (event) => {
-    let target = event.currentTarget; 
-    setState((prevState) => ({ ...prevState, openMenu: true }));
-    setState((prevState) => ({ ...prevState, anchorEl: target }));
+  const handleMenuView = (event) => {
+    let target = event.currentTarget;
+    setMobileMenu((prevState) => ({
+      ...prevState,
+      openMenu: true,
+      anchorEl: target,
+    }));
   };
 
-  const handleClose = () => {    
-    setState((prevState) => ({ ...prevState, openMenu: false }));
-  setState((prevState) => ({ ...prevState, anchorEl: null }));
+  const handleClose = () => {
+    setMobileMenu((prevState) => ({
+      ...prevState,
+      openMenu: false,
+      anchorEl: null,
+    }));
   };
   const MenuBar = () => {
     return (
       <Toolbar>
-        <IconButton onClick={setMobileView}>
+        <IconButton onClick={handleMenuView}>
           <div className={menuIcon}>
             <HomeIcon />
           </div>
@@ -64,21 +83,14 @@ const Header = () => {
   const DesktopDisplay = () => {
     const Menu = headersData.map(({ label, href }) => {
       return (
-        <Button
-          {...{
-            key: label,
-            color: "inherit",
-            to: href,
-            component: RouterLink,
-            className: menuButton,
-          }}
-          activeStyle={{
-            fontWeight: "bold",
-            borderBottom: "solid 3px #20B2AA	",
-          }}
+        <RouterLink
+          key={label}
+          to={href}
+          className={menuButton}
+          activeClassName={active}
         >
           {label}
-        </Button>
+        </RouterLink>
       );
     });
     return Menu;
@@ -88,34 +100,22 @@ const Header = () => {
     const data = headersData.map(({ label, href,index }) => {
       return (
         <MenuItem key={label}>
-          <Button
-            {...{
-              key: label,
-              color: "inherit",
-              to: href,
-              component: RouterLink,
-            }}
-            activeStyle={{
-              fontWeight: "bold",
-              borderBottom: "solid 3px #20B2AA	",
-            }}
+          <RouterLink
+            key={label}
+            to={href}
+            className={mobileMenuStyle}
+            activeClassName={active}
           >
             {label}
-          </Button>
+          </RouterLink>
         </MenuItem>
       );
     });
     return (
       <Menu
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
+        anchorOrigin={anchorOriginAttr}
+        transformOrigin={anchorOriginAttr}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >

@@ -1,5 +1,4 @@
 import SearchIcon from "@material-ui/icons/Search";
-import { useStyles } from "./SearchComponent.style";
 import { InputBase } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import ACTIONS from "../Actions/Actions";
