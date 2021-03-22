@@ -2,7 +2,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { InputBase } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import ACTIONS from "../Actions/Actions";
-
+import {useStyles} from './SearchComponent.style'
 export const SearchComponent = () => {
   const { search, searchIcon, inputRoot, inputInput } = useStyles();
   const dispatch = useDispatch();

@@ -28,12 +28,13 @@ export const useStyles = makeStyles((theme) =>
       fontWeight: 'bold',
       fontSize: '18px',
       marginTop: 'auto',
-
     },
     description:{
       margin: '50px',
       fontFamily: 'cursive'
-
+    },
+    secondary: {
+      color: theme.palette.secondary.main
     }
   }),
 );

@@ -10,7 +10,7 @@ export const theme = createMuiTheme({
             // contrastText: will be calculated to contrast with palette.primary.main
           },
           secondary: {
-            main: "#F14040"
+            main: "#808080"
           },
           basicColors: {
             white: "#fff",

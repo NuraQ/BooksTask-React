@@ -76,7 +76,6 @@ const Header = () => {
         {logo}
         {openMenu ? <MobileDisplay /> : <DesktopDisplay />}
         <SearchComponent />
-        <Avatar >OP</Avatar>
       </Toolbar>
     );
   };
