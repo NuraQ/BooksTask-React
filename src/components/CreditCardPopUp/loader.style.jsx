@@ -1,7 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
-export const useLoaderStyle = makeStyles((theme) => ({
+export const useCreditStyle = makeStyles((theme) => ({
     loaderStyle:{
+        display:'flex',
         margin: 'auto',
-        width: '50%'
+        justifyContent:'center'
+    },
+    buttonStyle: {
+        color: theme.palette.primary.main,
+        variant: "outlined", 
     }
 }));

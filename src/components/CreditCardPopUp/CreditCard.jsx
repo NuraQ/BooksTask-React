@@ -7,12 +7,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { CircularProgress } from "@material-ui/core";
-import {useLoaderStyle} from './loader.style';
+import {useCreditStyle} from './loader.style';
 
 export  const CreditCard = () =>  {
   const [open, setOpen] = React.useState(false);
   const [loader, displayLoader] = React.useState(false);
-  const {loaderStyle} = useLoaderStyle()
+  const {loaderStyle, buttonStyle} = useCreditStyle()
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -28,7 +28,7 @@ export  const CreditCard = () =>  {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button className={buttonStyle} variant='outlined' onClick={handleClickOpen}>
         Purchase Book
       </Button>
      <Dialog  open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
