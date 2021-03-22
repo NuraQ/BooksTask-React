@@ -7,16 +7,19 @@ const Home = () => {
   const [page, setPageNumber] = useState(0);
   const { Books, totalCount, hasMore, loading } = FetchData(page);
   let pagesToFetch = totalCount - page > 40 ? 40 : totalCount - page;
-  const { lastBookElementRef } = ScrollComponent(
-    setPageNumber,
-    pagesToFetch,
-    hasMore,
-    loading
-  );
+
+  const loadMoreContents = () => {
+    setPageNumber(page => page + pagesToFetch)
+  }
   return (
-    <div>
-      <BookList setPageNumber={setPageNumber} lastBookElementRef={lastBookElementRef} Books={Books} />
-    </div>
+      <ScrollComponent 
+       handleLoadMore={loadMoreContents}
+       hasMore={hasMore}
+       loading={loading}
+       threshold={0.7}
+       >
+      <BookList setPageNumber={setPageNumber} Books={Books} />
+      </ScrollComponent>
   );
 };
 
