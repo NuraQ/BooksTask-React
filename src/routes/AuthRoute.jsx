@@ -6,7 +6,7 @@ const AuthRoute = ({ Component, path, exact = false }) => {
 
   const handleRenderRoute = (props) => {
     if (isAuthenticated ) {
-      return <Component />;
+      return <Component {...props} />;
     } else {
       return (
         <Redirect

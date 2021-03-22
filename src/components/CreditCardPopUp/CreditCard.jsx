@@ -35,10 +35,7 @@ export const CreditCard = (props) => {
     if (allUsersbooks != null) {
       for (let userBooks of allUsersbooks) {
         if (userBooks[0].includes(user)) {
-          console.log(userBooks);
-          console.log(bookList[bookList.length - 1], "arr");
           bookList[bookList.length - 1].push(props.book);
-          console.log(bookList[bookList.length - 1], "arr2");
           localStorage.setItem("bookList", JSON.stringify(bookList));
           return;
         }

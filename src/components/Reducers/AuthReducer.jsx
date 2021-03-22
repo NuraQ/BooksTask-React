@@ -1,7 +1,7 @@
 import ACTIONS from '../../components/Actions/Actions'
 
 const initialState = {
-  logged: false,
+  isLogged: false,
   user: {
     email: "",
     password: "",
@@ -12,17 +12,27 @@ const initialState = {
     case ACTIONS.LOGIN_REQUEST: {
       return {
         ...state,
-        user: action.payload.user,
-        logged: true,
+        user: { ...state.user,
+          email: action.payload.email,
+          password: action.payload.password
+        },
+        isLogged: true,
       };
     }
     case ACTIONS.LOGIN_FAILURE: {
       return {
         ...state,
-        logged: false,
+        isLogged: false,
+        user: null
       };
     }
-
+    case ACTIONS.LOG_OUT: {
+      return {
+        ...state,
+        isLogged: false,
+        user: null
+      };
+    }
     default:
       return state;
   }

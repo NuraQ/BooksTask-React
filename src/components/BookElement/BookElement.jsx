@@ -8,15 +8,17 @@ import Grid from "@material-ui/core/Grid";
 import { useBookStyle } from "./BookElement.style";
 import React, { forwardRef, useState } from "react";
 import {WithAuth} from '../../components/WithAuth/WithAuth'
-
 import history from '../../routes/history';
+import {useSelector} from 'react-redux'
 
 export const BookElement = forwardRef((props, ref) => {
   const classes = useBookStyle();
+  const selectCurenntUser = (state) => state.AuthState;
+  const currentUser = useSelector(selectCurenntUser);
 
   const navigate = (element,showLogin) => {
-    const isLogged = WithAuth();
-    if (isLogged){
+    if (currentUser.isLogged){
+      console.log('nav',currentUser.isLogged)
       history.push({
         pathname: '/BookDetails',
         state: element

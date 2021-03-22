@@ -10,8 +10,9 @@ import {
 import { NavLink as RouterLink } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import { SearchComponent } from "../SearchComponent/SearchComponent";
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from "@material-ui/core/Avatar";
 import { useStyles } from "./NavBar.styles";
+import { useSelector } from "react-redux";
 
 const headersData = [
   {
@@ -28,8 +29,13 @@ const headersData = [
   },
 ];
 
+const showLabel = (label) => {
+  if (label === "Purchased Books" || label === "Log Out") {
+    return false;
+  }
+  return true;
+};
 const Header = (props) => {
- 
   const [isMobile, setIsMobile] = useState({
     openMenu: false,
     anchorEl: null,
@@ -41,10 +47,12 @@ const Header = (props) => {
     menuIcon,
     active,
     anchorOriginAttr,
-    mobileMenu
+    mobileMenu,
+    userIcon
   } = useStyles();
   const { openMenu, anchorEl } = isMobile;
-  const dispatch = props.dispatch
+  const selectCurenntUser = (state) => state.AuthState;
+  const currentUser = useSelector(selectCurenntUser);
   const logo = (
     <Typography variant="h6" component="h1" className={logoStyle}>
       Book Store
@@ -77,21 +85,24 @@ const Header = (props) => {
         </IconButton>
         {logo}
         {openMenu ? <MobileDisplay /> : <DesktopDisplay />}
-        <SearchComponent dispatch={props.dispatch}/>
+        <SearchComponent dispatch={props.dispatch} />
+        {currentUser.isLogged && <Avatar className={userIcon}>FA</Avatar>}
       </Toolbar>
     );
   };
   const DesktopDisplay = () => {
     const Menu = headersData.map(({ label, href }) => {
       return (
-        <RouterLink
-          key={label}
-          to={href}
-          className={menuButton}
-          activeClassName={active}
-        >
-          {label}
-        </RouterLink>
+        (currentUser.isLogged || showLabel(label)) && (
+          <RouterLink
+            key={label}
+            to={href}
+            className={menuButton}
+            activeClassName={active}
+          >
+            {label}
+          </RouterLink>
+        )
       );
     });
     return Menu;
@@ -100,16 +111,18 @@ const Header = (props) => {
   const MobileDisplay = () => {
     const data = headersData.map(({ label, href }) => {
       return (
-        <MenuItem key={label}>
-          <RouterLink
-            key={label}
-            to={href}
-            className={mobileMenu}
-            activeClassName={active}
-          >
-            {label}
-          </RouterLink>
-        </MenuItem>
+        (currentUser.isLogged || showLabel(label)) && (
+          <MenuItem key={label}>
+            <RouterLink
+              key={label}
+              to={href}
+              className={mobileMenu}
+              activeClassName={active}
+            >
+              {label}
+            </RouterLink>
+          </MenuItem>
+        )
       );
     });
     return (

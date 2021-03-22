@@ -59,6 +59,8 @@ export const useStyles = makeStyles((theme) => ({
     },
     padding: theme.spacing(0, 2),
     color: 'black'
-
+  },
+  userIcon:{
+    backgroundColor: theme.palette.primary.main
   }
 }));

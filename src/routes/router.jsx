@@ -11,6 +11,7 @@ import Header from "../components/NavBar/NavBar";
 import LogOutPopup from "../components/LogoutPopup/Logout";
 import PurchasedBooks from '../containers/PurchasedBooks/PurchasedBooks';
 import BookDetails from '../containers/BookDetails/BookDetails';
+import {WithAuth} from '../components/WithAuth/WithAuth'
 import AuthRoute from './AuthRoute'
 import history from "./history";
 
@@ -18,7 +19,7 @@ const RouterComponent = () => {
   const dispatch = useDispatch();
   return (
     <Router history={history}>
-      <Header dispatch={dispatch} />
+      <Header dispatch={dispatch} isLogged={WithAuth()} />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/Home" component={Home} />
