@@ -9,6 +9,7 @@ import history from "./history";
 import Header from "../components/NavBar/NavBar";
 import PurchasedBooks from '../containers/PurchasedBooks/PurchasedBooks';
 import BookDetails from '../containers/BookDetails/BookDetails';
+import LogOutPopup from '../components/Logout/Logout'
 import AuthRoute from './AuthRoute'
 const RouterComponent = () => {
   return (
@@ -19,6 +20,7 @@ const RouterComponent = () => {
         <Route path="/Home" component={Home} />
         <AuthRoute path="/PurchasedBooks" Component={PurchasedBooks}/>
         <AuthRoute path="/BookDetails" Component={BookDetails}/>
+        <AuthRoute path="/logout" Component={LogOutPopup}/>
 
       </Switch>
     </Router>

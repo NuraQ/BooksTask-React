@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import ACTIONS from '../Actions/Actions'
 import {
   Avatar,
   Button,
@@ -16,6 +17,9 @@ import {
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import SignUp from "../SignUp/SignUp";
 import { useStyles } from "./login.style";
+import {ClearCurrentUser, SetCurrentUser, SetFailedLogin} from './LoginDispatcher'
+import { useDispatch } from "react-redux";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -32,14 +36,14 @@ function Copyright() {
 export default function SignInSide(props) {
   const [open, setOpen] = useState(true);
   const [isSignupActive, openSignup] = useState(false);
-
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+
+  const dispatch = useDispatch()
   const signInPannel = useRef();
   const signUp = useRef();
-
   const classes = useStyles();
   const handleEmailChange = (event) => {
     setCredentials({ ...credentials, email: event.target.value });
@@ -52,11 +56,16 @@ export default function SignInSide(props) {
     users = users ? users : [];
     for (let user of users) {
       if (
-        user.credentials.email == credentials.email &&
-        user.credentials.password == credentials.password
+        user.credentials.email === credentials.email &&
+        user.credentials.password === credentials.password
       ) {
-        localStorage.setItem("loggedUser", user);
+        SetCurrentUser(user)(dispatch)
+        localStorage.setItem('loggedUser',user)
         alert('logged In successfully!!')
+        props.setDisplayLogin(false)
+      } else{
+         SetFailedLogin()(dispatch)
+
       }
     }
   };
@@ -163,7 +172,7 @@ export default function SignInSide(props) {
         </Grid>
         {isSignupActive ? (
           <Grid item xs={6} ref={signUp} className={classes.test}>
-            <SignUp className={classes.shildTest} />{" "}
+            <SignUp className={classes.shildTest} />
           </Grid>
         ) : (
           <div></div>

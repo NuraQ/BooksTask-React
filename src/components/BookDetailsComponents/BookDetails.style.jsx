@@ -21,18 +21,20 @@ export const useStyles = makeStyles((theme) =>
       maxWidth: '100%',
       maxHeight: '100%',
     },
-    bookInfo: {
+    column: {
+      direction:'column'
     },
     price:{
       fontWeight: 'bold',
       fontSize: '18px',
       marginTop: 'auto',
-
     },
     description:{
       margin: '50px',
       fontFamily: 'cursive'
-
+    },
+    secondary: {
+      color: theme.palette.secondary.main
     }
   }),
 );

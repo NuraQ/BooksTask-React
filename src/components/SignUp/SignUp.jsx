@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
   Avatar,
@@ -11,7 +12,6 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useStyles } from "./SignUp.style";
-import { history } from "../../routes/history";
 
 export default function SignUp() {
   const [newUser, setNewUser] = useState({
@@ -31,7 +31,6 @@ export default function SignUp() {
     });
   };
   const handlePasswordChange = (event) => {
-    // setCredentials({ ...credentials, password: event.target.value });
     setNewUser({
       ...newUser,
       credentials: {
@@ -51,6 +50,7 @@ export default function SignUp() {
 
   return (
     <Grid container className={classes.root} component="main">
+              <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

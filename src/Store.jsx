@@ -6,7 +6,7 @@ const store = configureStore({
     reducer: {
       // Define a top-level state field named `todos`, handled by `todosReducer`
       searchState: searchReducer,
-      AuthReducer: AuthReducer
+      AuthState: AuthReducer
     }
   })
   export default store

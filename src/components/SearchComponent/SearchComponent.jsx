@@ -1,14 +1,13 @@
 import SearchIcon from "@material-ui/icons/Search";
 import { useStyles } from "./SearchComponent.style";
 import { InputBase } from "@material-ui/core";
-import { useDispatch } from "react-redux";
 import ACTIONS from "../Actions/Actions";
+import clsx from 'clsx';
 
-export const SearchComponent = () => {
+export const SearchComponent = (props) => {
   const { search, searchIcon, inputRoot, inputInput } = useStyles();
-  const dispatch = useDispatch();
   const handleChange = (event) => {
-    dispatch({ type: ACTIONS.search, payload: event.target.value });
+    props.dispatch({ type: ACTIONS.search, payload: event.target.value });
   };
 
   return (
@@ -18,8 +17,7 @@ export const SearchComponent = () => {
       </div>
       <InputBase
         placeholder="Search…"
-        className={`${inputRoot} ${inputInput}`}
-        inputProps={{ "aria-label": "search" }}
+        className={clsx(inputRoot, inputInput)}
         onChange={(e) => {handleChange(e)}}
       />
     </div>

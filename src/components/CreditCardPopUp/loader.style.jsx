@@ -1,7 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 export const useLoaderStyle = makeStyles((theme) => ({
     loaderStyle:{
+        display:'flex',
         margin: 'auto',
-        width: '50%'
+        justifyContent:'center'
     }
 }));

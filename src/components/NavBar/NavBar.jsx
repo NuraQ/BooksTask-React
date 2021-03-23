@@ -1,12 +1,18 @@
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import React, { useState } from "react";
-import { useStyles } from "./NavBar.styles";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
 import { NavLink as RouterLink } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
-import { IconButton } from "@material-ui/core";
-import { Menu, MenuItem } from "@material-ui/core";
 import { SearchComponent } from "../SearchComponent/SearchComponent";
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from "@material-ui/core/Avatar";
+import { useStyles } from "./NavBar.styles";
+import { useSelector } from "react-redux";
 
 const headersData = [
   {
@@ -23,99 +29,107 @@ const headersData = [
   },
 ];
 
-const Header = () => {
-  const { header, logoStyle, menuButton, menuIcon } = useStyles();
-  const [state, setState] = useState({
+const showLabel = (label) => {
+  if (label === "Purchased Books" || label === "Log Out") {
+    return false;
+  }
+  return true;
+};
+const Header = (props) => {
+  const [isMobile, setIsMobile] = useState({
     openMenu: false,
     anchorEl: null,
   });
-  const { openMenu, anchorEl } = state;
+  const {
+    header,
+    logoStyle,
+    menuButton,
+    menuIcon,
+    active,
+    anchorOriginAttr,
+    mobileMenu,
+    userIcon
+  } = useStyles();
+  const { openMenu, anchorEl } = isMobile;
+  const selectCurenntUser = (state) => state.AuthState;
+  const currentUser = useSelector(selectCurenntUser);
   const logo = (
     <Typography variant="h6" component="h1" className={logoStyle}>
       Book Store
     </Typography>
   );
 
-  const setMobileView = (event) => {
-    let target = event.currentTarget; 
-    setState((prevState) => ({ ...prevState, openMenu: true }));
-    setState((prevState) => ({ ...prevState, anchorEl: target }));
+  const handleMenuView = (event) => {
+    let target = event.currentTarget;
+    setIsMobile((prevState) => ({
+      ...prevState,
+      openMenu: true,
+      anchorEl: target,
+    }));
   };
 
-  const handleClose = () => {    
-    setState((prevState) => ({ ...prevState, openMenu: false }));
-  setState((prevState) => ({ ...prevState, anchorEl: null }));
+  const handleClose = () => {
+    setIsMobile((prevState) => ({
+      ...prevState,
+      openMenu: false,
+      anchorEl: null,
+    }));
   };
   const MenuBar = () => {
     return (
       <Toolbar>
-        <IconButton onClick={setMobileView}>
+        <IconButton onClick={handleMenuView}>
           <div className={menuIcon}>
             <HomeIcon />
           </div>
         </IconButton>
         {logo}
         {openMenu ? <MobileDisplay /> : <DesktopDisplay />}
-        <SearchComponent />
-        <Avatar >OP</Avatar>
+        <SearchComponent dispatch={props.dispatch} />
+        {currentUser.isLogged && <Avatar className={userIcon}>FA</Avatar>}
       </Toolbar>
     );
   };
   const DesktopDisplay = () => {
     const Menu = headersData.map(({ label, href }) => {
       return (
-        <Button
-          {...{
-            key: label,
-            color: "inherit",
-            to: href,
-            component: RouterLink,
-            className: menuButton,
-          }}
-          activeStyle={{
-            fontWeight: "bold",
-            borderBottom: "solid 3px #20B2AA	",
-          }}
-        >
-          {label}
-        </Button>
+        (currentUser.isLogged || showLabel(label)) && (
+          <RouterLink
+            key={label}
+            to={href}
+            className={menuButton}
+            activeClassName={active}
+          >
+            {label}
+          </RouterLink>
+        )
       );
     });
     return Menu;
   };
 
   const MobileDisplay = () => {
-    const data = headersData.map(({ label, href,index }) => {
+    const data = headersData.map(({ label, href }) => {
       return (
-        <MenuItem key={label}>
-          <Button
-            {...{
-              key: label,
-              color: "inherit",
-              to: href,
-              component: RouterLink,
-            }}
-            activeStyle={{
-              fontWeight: "bold",
-              borderBottom: "solid 3px #20B2AA	",
-            }}
-          >
-            {label}
-          </Button>
-        </MenuItem>
+        (currentUser.isLogged || showLabel(label)) && (
+          <MenuItem key={label}>
+            <RouterLink
+              key={label}
+              to={href}
+              className={mobileMenu}
+              activeClassName={active}
+            >
+              {label}
+            </RouterLink>
+          </MenuItem>
+        )
       );
     });
     return (
       <Menu
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
+        anchorOrigin={anchorOriginAttr}
+        transformOrigin={anchorOriginAttr}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
