@@ -18,7 +18,7 @@ const Home = () => {
        loading={loading}
        threshold={0.7}
        >
-      <BookList setPageNumber={setPageNumber} Books={Books} />
+      <BookList setPageNumber={setPageNumber} books={Books} />
       </ScrollComponent>
   );
 };
