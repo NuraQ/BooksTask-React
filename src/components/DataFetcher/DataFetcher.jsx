@@ -26,7 +26,6 @@ const FetchData = (page, query) => {
         } 
         setItems((state) => [...state, ...response.data.items]);
         setCount(response.data.totalItems);
-        setLoading(false)
       })
       .catch((error) => {
         console.error("Error:", error);

@@ -5,11 +5,11 @@ import { useGridStyles } from './BookList.style';
 
 export const BookList = (props) => {
   const classes = useGridStyles();
-  let Books = props.books;
+  let books = props.books;
   return (
     <div container className={classes.root}>
       <Grid container spacing={3}>
-        {Books.map((item, index) => {
+        {books.map((item) => {
             return (
               <Book
                 title={item.volumeInfo.title}
