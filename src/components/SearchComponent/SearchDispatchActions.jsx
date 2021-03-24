@@ -1,18 +1,15 @@
 import ACTIONS from "../../components/Actions/Actions";
 import FetchData from '../DataFetcher/DataFetcher'
-export const SearchElements = (searchTerm)  => (dispatch,getState) => {
-  // const {Books} = FetchData(0,searchTerm)
-  setTimeout(()=>{
-    dispatch({
+export const SearchElements = (searchTerm)  => async(dispatch,getState) => {
+  const {page,searchTerm,hasMore,Books} = getState()
+  FetchData(
+    page,
+    searchTerm
+  );  
+
+  dispatch({
       type: ACTIONS.search,
-      payload: searchTerm ,
+      payload: {searchTerm, Books, hasMore} ,
     });
-  },500)
 
 };
-// export async function saveNewTodo() {
-//     console.log('text')
-  
-//       return({ type: ACTIONS.search, payload: 'E' })
-    
-//   }
