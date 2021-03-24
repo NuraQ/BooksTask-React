@@ -65,7 +65,6 @@ const Header = () => {
     }));
   };
   const MenuBar = () => {
-    console.log(dispatch,"dispatchSD")
     return (
       <Toolbar>
         <IconButton onClick={handleMenuView}>
@@ -75,7 +74,7 @@ const Header = () => {
         </IconButton>
         {logo}
         {openMenu ? <MobileDisplay /> : <DesktopDisplay />}
-        <SearchComponent dispatch={props.dispatch}/>
+        <SearchComponent/>
       </Toolbar>
     );
   };
