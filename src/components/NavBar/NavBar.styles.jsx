@@ -1,11 +1,11 @@
-import { makeStyles, fade } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: "white",
   },
   logoStyle: {
-    fontFamily: " sans-serif",
+    fontFamily: "sans-serif",
     fontWeight: 600,
     color: "#808080",
     textAlign: "left",
@@ -25,52 +25,31 @@ export const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       marginLeft: "3em",
     },
+
     [theme.breakpoints.down('sm')]: {
-      marginLeft: "2.0em",
+      marginLeft: "1.0em",
     },
+   
     fontWeight: 400,
     size: "18px",
-    color: "#808080",
+    color: theme.palette.basicColors.lightGray,
     marginLeft: "4em",
     alignSelf: "stretch",
     textDecoration: 'none',
-    paddingTop: '15px',
-    textAlign: 'center'
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems:'center',
   },
-  mobileMenu: {
+  mobileMenuStyle: {
     textDecoration: 'none',
   },
   active:{
     fontWeight: "bold",
-    borderBottom: "solid 3px #20B2AA",
+    borderBottom: `solid 3px ${theme.palette.primary.main}`,
   },
   anchorOriginAttr:{
     vertical: "top",
     horizontal: "right",
-  },
-  search: {    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    border: 'solid 1px 	#DCDCDC ',
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.black, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 'auto',
-    height:'35px',
-    alignSelf: 'center',
-
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'black',
-
   },
 
   menuIcon: {
