@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink as RouterLink } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -7,7 +8,6 @@ import {
   Menu,
   MenuItem,
 } from "@material-ui/core";
-import { NavLink as RouterLink } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import { SearchComponent } from "../SearchComponent/SearchComponent";
 import { useStyles } from "./NavBar.styles";
@@ -27,7 +27,12 @@ const headersData = [
   },
 ];
 
-const Header = (props) => {
+const Header = () => {
+  const [mobileMenu, setMobileMenu] = useState({
+    openMenu: false,
+    anchorEl: null,
+  });
+  const { openMenu, anchorEl } = mobileMenu;
   const {
     header,
     logoStyle,
@@ -35,14 +40,8 @@ const Header = (props) => {
     menuIcon,
     active,
     anchorOriginAttr,
-    mobileMenu
+    mobileMenuStyle
   } = useStyles();
-  const [isMobile, setIsMobile] = useState({
-    openMenu: false,
-    anchorEl: null,
-  });
-  const { openMenu, anchorEl } = isMobile;
-  const dispatch = props.dispatch
   const logo = (
     <Typography variant="h6" component="h1" className={logoStyle}>
       Book Store
@@ -51,7 +50,7 @@ const Header = (props) => {
 
   const handleMenuView = (event) => {
     let target = event.currentTarget;
-    setIsMobile((prevState) => ({
+    setMobileMenu((prevState) => ({
       ...prevState,
       openMenu: true,
       anchorEl: target,
@@ -59,7 +58,7 @@ const Header = (props) => {
   };
 
   const handleClose = () => {
-    setIsMobile((prevState) => ({
+    setMobileMenu((prevState) => ({
       ...prevState,
       openMenu: false,
       anchorEl: null,
@@ -103,7 +102,7 @@ const Header = (props) => {
           <RouterLink
             key={label}
             to={href}
-            className={mobileMenu}
+            className={mobileMenuStyle}
             activeClassName={active}
           >
             {label}

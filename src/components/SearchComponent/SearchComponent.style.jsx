@@ -9,6 +9,9 @@ export const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: fade(theme.palette.common.black, 0.25),
     },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: "2.0em",
+    },
     marginRight: theme.spacing(2),
     marginLeft: "auto",
     height: "35px",
