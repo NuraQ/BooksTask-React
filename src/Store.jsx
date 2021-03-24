@@ -1,9 +1,12 @@
-import searchReducer from './components/Reducers/searchReducer'
-import {configureStore} from '@reduxjs/toolkit'
-const store = configureStore({
-    reducer: {
-      // Define a top-level state field named `todos`, handled by `todosReducer`
-      searchState: searchReducer
-    }
-  })
-  export default store
+import searchReducer from './components/Reducers/searchReducer';
+import { createStore, applyMiddleware } from 'redux'
+
+import rootReducer from './reducer'
+// const composedEnhancer = composeWithDevTools(
+//   // Add whatever middleware you actually want to use here
+//   // applyMiddleware()
+//   // other store enhancers if any
+// )
+
+const store = createStore(rootReducer)
+export default store
