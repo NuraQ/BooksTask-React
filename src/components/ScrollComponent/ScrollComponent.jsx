@@ -1,29 +1,53 @@
-import { useRef, useCallback } from "react";
-import ACTIONS from "../Actions/Actions";
+import { useRef, useCallback, useEffect } from "react";
+import { CircularProgress } from "@material-ui/core";
+import { useLoaderStyle } from "./ScrollComponent.style";
 
-export const ScrollComponent = (
-  totalCount,
-  hasMore,
-  dispatch,
-  currentPage,
-  loading
-) => {
-  const observer = useRef();
-  const lastBookElementRef = useCallback(
-    (node) => {
-      if (loading) {
-        return;
+export const ScrollComponent = (props) => {
+  const { children, handleLoadMore, hasMore } = props;
+  const loader = useRef();
+  const handleLoading = useRef(handleLoadMore);
+  const { loaderStyle } = useLoaderStyle();
+  const handleObserver = useCallback(
+    (entities) => {
+      const target = entities[0];
+      if (target.isIntersecting && hasMore) {
+        handleLoading.current();
       }
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          console.log("yalla");
-          dispatch({ type: ACTIONS.SCROLL, payload: totalCount + currentPage });
-        }
-      });
-      if (node) observer.current.observe(node);
     },
-    [hasMore, loading]
+    [hasMore]
   );
-  return { lastBookElementRef };
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0,
+    };
+    const observer = new IntersectionObserver(handleObserver, options);
+    if (loader && loader.current) {
+      observer.observe(loader.current);
+    }
+
+    return () => {
+      if (loader && loader.current) {
+        observer.unobserve(loader.current);
+      }
+    };
+  }, [loader, hasMore]);
+  useEffect(() => {
+    handleLoading.current = handleLoadMore;
+  }, [handleLoadMore]);
+  return (
+    <div>
+      {children}
+      {hasMore && (
+        <>
+          <div className={loaderStyle}>
+            <CircularProgress />
+          </div>
+          <div ref={loader} />
+        </>
+      )}
+    </div>
+  );
 };

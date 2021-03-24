@@ -9,7 +9,8 @@ export const SearchComponent = (props) => {
   const { search, searchIcon, inputRoot, inputInput } = useStyles();
   const dispatch = useDispatch()
   const handleChange = (event) => {
-    SearchElements( event.target.value)(dispatch)
+    dispatch(SearchElements(event.target.value ))
+    console.log(event.target.value)
   };
 
   return (

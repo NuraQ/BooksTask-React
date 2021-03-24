@@ -1,5 +1,7 @@
 import ACTIONS from "../Actions/Actions";
-const initialState = { status: '', page: 0 };
+import FetchData from "../../components/DataFetcher/DataFetcher";
+
+const initialState = { status: '', page: 0, books:[] };
 
 const SearchReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -17,9 +19,25 @@ const SearchReducer = (state = initialState, action) => {
         page:  action.payload,
       };
     }
+    case 'todos/todoAdded': {
+      return {
+        ...state,
+        books: [
+          ...state.books,
+          action.payload
+        ]
+      };
+    }
 
     default:
       return state;
   }
 };
 export default SearchReducer;
+
+// export async function saveNewTodo(dispatch,getState) {
+//   console.log('text')
+
+//     dispatch({ type: ACTIONS.search, payload: 'E' })
+  
+// }

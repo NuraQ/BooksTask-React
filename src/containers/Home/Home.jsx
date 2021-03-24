@@ -1,19 +1,12 @@
 import { BookList } from "../../components/BookList/BookList";
-import { HomeLogo } from "../../components/HomeComponents/HomeLogo";
-import { useDispatch, useSelector } from "react-redux";
+import { ScrollComponent } from "../../components/ScrollComponent/ScrollComponent";
+import  SearchHandler from '../../components/SearchComponent/SearchHandler'
 
 const Home = () => {
-  const getPage = (state) => state.searchState.page;
-  const currentPage = useSelector(getPage);
-  const dispatch = useDispatch();
-  const selectBooks = (state) => state.searchState.status;
-  const bookQuery = useSelector(selectBooks);
 
   return (
-    <div>
-      <HomeLogo />
-      <BookList  dispatch={dispatch} currentPage={currentPage} bookQuery={bookQuery} />
-    </div>
+
+    <SearchHandler />
   );
 };
 

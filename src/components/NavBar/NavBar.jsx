@@ -95,7 +95,7 @@ const Header = () => {
   };
 
   const MobileDisplay = () => {
-    const data = headersData.map(({ label, href,index }) => {
+    const data = headersData.map(({ label, href }) => {
       return (
         <MenuItem key={label}>
           <RouterLink

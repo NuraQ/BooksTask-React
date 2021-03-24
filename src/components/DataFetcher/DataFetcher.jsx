@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
 const FetchData = (page, query) => {
   const [Books, setItems] = useState([]);
   const [totalCount, setCount] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(true);
+  const maxResult = 40;
 
   useEffect(() => {
     setItems([]);
@@ -12,31 +14,31 @@ const FetchData = (page, query) => {
 
   useEffect(() => {
     setLoading(true)
-    fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}&maxResults=40&startIndex=${page}&key=AIzaSyCOBbymaad4eBVNFVF5JC-Pc0TQzE6AHOw`,
-      {
-        method: "get",
+    axios.get(
+      `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}&maxResults=${maxResult}&startIndex=${page}&key=AIzaSyCOBbymaad4eBVNFVF5JC-Pc0TQzE6AHOw`
+      , {
         headers: {
-          "Content-Type": "application/json",
-        },
-      }
+            'Content-Type': 'application/json'
+        }
+    }
+   
     )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.totalItems - 40 === page  || data.totalItems  < 0 || data.totalItems  <=  page) {
+      .then((response) => {
+        setHasMore(true);
+        if (response.data.totalItems - 40 === page  || response.data.totalItems  <=  page) {
           setHasMore(false);
           return ;
-        } else {
-          setHasMore(true);
-        }
-        setItems((state) => [...state, ...data.items]);
-        setCount(data.totalItems);
-        setLoading(false)
+        } 
+        setItems((state) => [...state, ...response.data.items]);
+        setCount(response.data.totalItems);
       })
       .catch((error) => {
         console.error("Error:", error);
-      });
-  }, [page, query]);
+      })
+      .finally(()=>{
+        setLoading(false)
+      })
+  }, [page]);
   return { Books, totalCount, hasMore, loading };
 };
 

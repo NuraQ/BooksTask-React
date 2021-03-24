@@ -1,5 +1,7 @@
-import searchReducer from './components/Reducers/searchReducer';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from 'redux-devtools-extension'
+
 
 import rootReducer from './reducer'
 // const composedEnhancer = composeWithDevTools(
@@ -7,6 +9,7 @@ import rootReducer from './reducer'
 //   // applyMiddleware()
 //   // other store enhancers if any
 // )
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composedEnhancer)
 export default store
