@@ -2,20 +2,11 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import * as FetachActions from './FetcherActions'
 
-const FetchData = (page, query) => {
-  // const [Books, setItems] = useState([]);
-  // const [totalCount, setCount] = useState(0);
-  // const [hasMore, setHasMore] = useState(false);
-  // const [loading, setLoading] = useState(true);
+const FetchData = async(page, query,dispatch) => {
+
   const maxResult = 40;
 
-  useEffect(() => {
-    FetachActions.addElements([])
-  }, [query]);
-
-  useEffect(() => {
-    // setLoading(true)
-    axios.get(
+    await axios.get(
       `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}&maxResults=${maxResult}&startIndex=${page}&key=AIzaSyCOBbymaad4eBVNFVF5JC-Pc0TQzE6AHOw`
       , {
         headers: {
@@ -25,13 +16,14 @@ const FetchData = (page, query) => {
    
     )
       .then((response) => {
-        FetachActions.setHasMore(true);
+        dispatch(FetachActions.setHasMore(true));
         if (response.data.totalItems - 40 === page  || response.data.totalItems  <=  page) {
-          FetachActions.setHasMore(false);
+          dispatch(FetachActions.setHasMore(false));
           return ;
         } 
-        FetachActions.addElements((state) => [...state, ...response.data.items]);
+       dispatch(FetachActions.addElements(response.data.items));
         // setCount(response.data.totalItems);
+        console.log(response.data.items)
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -39,8 +31,7 @@ const FetchData = (page, query) => {
       .finally(()=>{
         // setLoading(false)
       })
-  }, [page]);
-  // return { Books, totalCount, hasMore, loading };
+
 };
 
 export default FetchData;

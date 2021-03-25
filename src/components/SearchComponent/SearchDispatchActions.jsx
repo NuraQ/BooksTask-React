@@ -1,15 +1,10 @@
 import ACTIONS from "../../components/Actions/Actions";
 import FetchData from '../DataFetcher/DataFetcher'
-export const SearchElements = (searchTerm)  => async(dispatch,getState) => {
-  const {page,searchTerm,hasMore,Books} = getState()
-  FetchData(
-    page,
-    searchTerm
+export const SearchElements = (searchTerm) => (dispatch,getState) => {
+     FetchData(
+    0,
+    searchTerm, dispatch
   );  
 
-  dispatch({
-      type: ACTIONS.search,
-      payload: {searchTerm, Books, hasMore} ,
-    });
-
+dispatch({type:ACTIONS.search})
 };

@@ -4,7 +4,7 @@ import { InputBase } from "@material-ui/core";
 import clsx from 'clsx';
 import {SearchElements} from './SearchDispatchActions'
 import { useStyles } from "./SearchComponent.style";
-
+import {addElements} from '../DataFetcher/FetcherActions'
 export const SearchComponent = (props) => {
   const { search, searchIcon, inputRoot, inputInput } = useStyles();
   const dispatch = useDispatch()

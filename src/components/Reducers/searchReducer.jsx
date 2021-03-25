@@ -1,7 +1,7 @@
 import ACTIONS from "../Actions/Actions";
 import FetchData from "../../components/DataFetcher/DataFetcher";
 
-const initialState = { status: '', page: 0, books:[] };
+const initialState = { status: '', page: 0, isSearching: false, books:[], hasMore:false};
 
 const SearchReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,8 +9,9 @@ const SearchReducer = (state = initialState, action) => {
       return {
         // Again, one less level of nesting to copy
         ...state,
-        status: action.payload,
         page: 0,
+        isSearching: true,
+        books: [] ,
       };
     }
     case ACTIONS.SCROLL: {
@@ -19,13 +20,19 @@ const SearchReducer = (state = initialState, action) => {
         page:  action.payload,
       };
     }
-    case 'todos/todoAdded': {
+    case ACTIONS.ADD_BOOKS: {
       return {
         ...state,
         books: [
           ...state.books,
-          action.payload
+          ...action.payload
         ]
+      };
+    }
+    case ACTIONS.SET_HAS_MORE: {
+      return {
+        ...state,
+        hasMore: action.payload
       };
     }
 

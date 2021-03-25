@@ -12,22 +12,24 @@ const Home = () => {
 
   const booksState = (state) => state.searchState.books;
   const booksFetched = useSelector(booksState)
-
+  console.log(booksFetched)
   const hasMore = (state) => state.searchState.hasMore;
   const more = useSelector(hasMore)
   // let pagesToFetch =
   //   totalCount - currentPage > 40 ? 40 : totalCount - currentPage;
-  //   const loadMoreContents = () => {
-  //     dispatch({type: ACTIONS.SCROLL, payload: currentPage + pagesToFetch})
-  //   }
+    const loadMoreContents = () => {
+      dispatch({type: ACTIONS.SCROLL, payload: currentPage + 1})
+    }
   return (
       <ScrollComponent 
-      //  handleLoadMore={loadMoreContents}
+       handleLoadMore={loadMoreContents}
        hasMore={more}
       //  loading={loading}
        threshold={0.7}
        >
-      <BookList  books={booksFetched} />
+         {(booksFetched.length != 0) &&      
+         <BookList  books={booksFetched} />
+         }
       </ScrollComponent>
   );
 };
