@@ -6,5 +6,5 @@ export const SearchElements = (searchTerm) => (dispatch,getState) => {
     searchTerm, dispatch
   );  
 
-dispatch({type:ACTIONS.search})
+dispatch({type:ACTIONS.search,payload: searchTerm})
 };

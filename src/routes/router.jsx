@@ -16,9 +16,11 @@ const RouterComponent = () => {
     <Router history={history}>
       <Header dispatch={dispatch} />
       <Switch>
+        <SearchHandler>
         <Route exact path="/" component={Home} />
         <Route path="/Home" component={Home} />
         <Route path="/PurchasedBooks" />
+        </SearchHandler>
       </Switch>
     </Router>
   );

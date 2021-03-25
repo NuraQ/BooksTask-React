@@ -1,7 +1,7 @@
 import ACTIONS from "../Actions/Actions";
 import FetchData from "../../components/DataFetcher/DataFetcher";
 
-const initialState = { status: '', page: 0, isSearching: false, books:[], hasMore:false};
+const initialState = { searchTerm: '', page: 0, isSearching: false, books:[], hasMore:false};
 
 const SearchReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -12,6 +12,7 @@ const SearchReducer = (state = initialState, action) => {
         page: 0,
         isSearching: true,
         books: [] ,
+        searchTerm: action.payload
       };
     }
     case ACTIONS.SCROLL: {
