@@ -10,7 +10,6 @@ import Header from "../components/NavBar/NavBar";
 import history from "./history";
 import SearchHandler from '../components/SearchComponent/SearchHandler'
 const RouterComponent = () => {
-  const dispatch = useDispatch();
   return (
     <Router history={history}>
       <Header  />
