@@ -24,13 +24,12 @@ const FetchData = async (page, query, dispatch) => {
         return;
       }
       dispatch(FetachActions.addElements(response.data.items));
-      // setCount(response.data.totalItems);
     })
     .catch((error) => {
       console.error("Error:", error);
     })
     .finally(() => {
-      // setLoading(false)
+      FetachActions.setHasMore(false)
     });
 };
 export default FetchData;

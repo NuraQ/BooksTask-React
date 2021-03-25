@@ -10,7 +10,6 @@ const SearchHandler = () => {
     const dispatch = useDispatch();
     const booksState = (state) => state.searchState.books;
     const booksFetched = useSelector(booksState);
-    console.log(booksFetched);
     const hasMore = (state) => state.searchState.hasMore;
     const more = useSelector(hasMore);
     const selectBooks = (state) => state.searchState.searchTerm;
