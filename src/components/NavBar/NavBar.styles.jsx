@@ -23,8 +23,9 @@ export const useStyles = makeStyles((theme) => ({
       display:'none'
     },
     [theme.breakpoints.down('md')]: {
-      marginLeft: "2em",
+      marginLeft: "3em",
     },
+
     [theme.breakpoints.down('sm')]: {
       marginLeft: "1.0em",
     },
