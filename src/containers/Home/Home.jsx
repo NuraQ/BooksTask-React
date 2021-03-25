@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import  {BookList} from "../../components/BookList/BookList";
-import FetchData from "../../components/DataFetcher/DataFetcher";
+import { BookList } from "../../components/BookList/BookList";
 import { ScrollComponent } from "../../components/ScrollComponent/ScrollComponent";
 import { useDispatch, useSelector } from "react-redux";
-import {ScrollAction} from '../../components/ScrollComponent/ScrollActions';
-
+import { LoadMoreBooks } from "../../components/Actions/InfiniteScrollActions/ScrollActions";
+import { getAllData } from "../../components/Actions/Books/BooksActions";
 const Home = () => {
   const dispatch = useDispatch();
   const booksState = (state) => state.searchState.books;
@@ -12,20 +11,20 @@ const Home = () => {
   const hasMore = (state) => state.searchState.hasMore;
   const more = useSelector(hasMore);
 
-    useEffect(() => {
-    FetchData(0, "", dispatch);
+  useEffect(() => {
+    getAllData(dispatch);
   }, []);
 
   const loadMoreContents = () => {
-    dispatch(ScrollAction())
+    LoadMoreBooks(40, dispatch);
   };
   return (
     <ScrollComponent
       handleLoadMore={loadMoreContents}
       hasMore={more}
-      threshold={1}
+      threshold={0.7}
     >
-     <BookList books={booksFetched} />
+      <BookList books={booksFetched} />
     </ScrollComponent>
   );
 };

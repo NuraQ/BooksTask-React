@@ -2,13 +2,14 @@ import {useDispatch} from 'react-redux'
 import SearchIcon from "@material-ui/icons/Search";
 import { InputBase } from "@material-ui/core";
 import clsx from 'clsx';
-import {SearchElements} from './SearchDispatchActions'
+import {SearchElements} from '../Actions/Books/BooksActions'
 import { useStyles } from "./SearchComponent.style";
-export const SearchComponent = (props) => {
+
+export const SearchComponent = () => {
   const { search, searchIcon, inputRoot, inputInput } = useStyles();
   const dispatch = useDispatch()
   const handleChange = (event) => {
-    dispatch(SearchElements(event.target.value ))
+    SearchElements(event.target.value, dispatch)
   };
 
   return (

@@ -1,6 +1,6 @@
  const ACTIONS = {
-    search: "functionaliies/search",
-    SCROLL: 'scrollNextPage',
+    SEARCH_BOOKS: "SEARCH_BOOKS",
+    SCROLL: 'SCROLL',
     ADD_BOOKS: 'ADD_BOOKS',
     SET_HAS_MORE:'SET_HAS_MORE'
 }
