@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import  BookList  from "../../components/BookList/BookList";
+import { BookList } from "../../components/BookList/BookList";
 import { ScrollComponent } from "../../components/ScrollComponent/ScrollComponent";
 import { useDispatch, useSelector } from "react-redux";
 import ACTIONS from '../../components/Actions/Actions';
@@ -10,6 +10,7 @@ const SearchHandler = () => {
     const dispatch = useDispatch();
     const booksState = (state) => state.searchState.books;
     const booksFetched = useSelector(booksState);
+    console.log(booksFetched);
     const hasMore = (state) => state.searchState.hasMore;
     const more = useSelector(hasMore);
     const selectBooks = (state) => state.searchState.searchTerm;

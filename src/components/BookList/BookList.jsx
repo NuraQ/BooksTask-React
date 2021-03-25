@@ -3,7 +3,7 @@ import {Grid} from '@material-ui/core';
 import {Book} from '../Book/book'
 import { useGridStyles } from './BookList.style';
 
- const BookList = (props) => {
+ export const BookList = (props) => {
   const classes = useGridStyles();
   let books = props.books;
   return (
@@ -22,4 +22,3 @@ import { useGridStyles } from './BookList.style';
     </div>
   );
 };
-export default BookList
