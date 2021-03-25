@@ -4,13 +4,11 @@ import { InputBase } from "@material-ui/core";
 import clsx from 'clsx';
 import {SearchElements} from './SearchDispatchActions'
 import { useStyles } from "./SearchComponent.style";
-import {addElements} from '../DataFetcher/FetcherActions'
 export const SearchComponent = (props) => {
   const { search, searchIcon, inputRoot, inputInput } = useStyles();
   const dispatch = useDispatch()
   const handleChange = (event) => {
     dispatch(SearchElements(event.target.value ))
-    console.log(event.target.value)
   };
 
   return (
@@ -21,7 +19,7 @@ export const SearchComponent = (props) => {
       <InputBase
         placeholder="Search…"
         className={clsx(inputRoot, inputInput)}
-        onChange={(e) => {handleChange(e)}}
+        onChange={handleChange}
       />
     </div>
   );
