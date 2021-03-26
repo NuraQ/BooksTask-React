@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: "4rem",
     width: "200px",
     [theme.breakpoints.down('sm')]: {
-      marginLeft: "0.5rem",
+      marginLeft: '0.7em'
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: "1rem",

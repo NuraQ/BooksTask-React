@@ -1,25 +1,31 @@
-import {useState} from 'react'
+import { useEffect, useState } from "react";
 import { BookList } from "../../components/BookList/BookList";
-import FetchData from "../../components/DataFetcher/DataFetcher";
 import { ScrollComponent } from "../../components/ScrollComponent/ScrollComponent";
-
+import { useDispatch, useSelector } from "react-redux";
+import { LoadMoreBooks } from "../../components/Actions/InfiniteScrollActions/ScrollActions";
+import { getAllData } from "../../components/Actions/Books/BooksActions";
 const Home = () => {
-  const [page, setPageNumber] = useState(0);
-  const { Books, totalCount, hasMore, loading } = FetchData(page);
-  let pagesToFetch = totalCount - page > 40 ? 40 : totalCount - page;
+  const dispatch = useDispatch();
+  const booksState = (state) => state.searchState.books;
+  const booksFetched = useSelector(booksState);
+  const hasMore = (state) => state.searchState.hasMore;
+  const more = useSelector(hasMore);
+
+  useEffect(() => {
+    getAllData(dispatch);
+  }, []);
 
   const loadMoreContents = () => {
-    setPageNumber(page => page + pagesToFetch)
-  }
+    LoadMoreBooks(40, dispatch);
+  };
   return (
-      <ScrollComponent 
-       handleLoadMore={loadMoreContents}
-       hasMore={hasMore}
-       loading={loading}
-       threshold={0.7}
-       >
-      <BookList setPageNumber={setPageNumber} books={Books} />
-      </ScrollComponent>
+    <ScrollComponent
+      handleLoadMore={loadMoreContents}
+      hasMore={more}
+      threshold={0.7}
+    >
+      <BookList books={booksFetched} />
+    </ScrollComponent>
   );
 };
 

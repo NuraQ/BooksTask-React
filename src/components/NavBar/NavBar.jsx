@@ -42,7 +42,6 @@ const Header = () => {
     anchorOriginAttr,
     mobileMenuStyle
   } = useStyles();
-
   const logo = (
     <Typography variant="h6" component="h1" className={logoStyle}>
       Book Store
@@ -75,7 +74,7 @@ const Header = () => {
         </IconButton>
         {logo}
         {openMenu ? <MobileDisplay /> : <DesktopDisplay />}
-        <SearchComponent />
+        <SearchComponent/>
       </Toolbar>
     );
   };

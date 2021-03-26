@@ -8,15 +8,17 @@ import {
 import Home from "../containers/Home/Home";
 import Header from "../components/NavBar/NavBar";
 import history from "./history";
-
+import SearchHandler from '../components/SearchComponent/SearchHandler'
 const RouterComponent = () => {
   return (
     <Router history={history}>
-      <Header />
+      <Header  />
       <Switch>
+        {/* <SearchHandler> */}
         <Route exact path="/" component={Home} />
         <Route path="/Home" component={Home} />
         <Route path="/PurchasedBooks" />
+        {/* </SearchHandler> */}
       </Switch>
     </Router>
   );
